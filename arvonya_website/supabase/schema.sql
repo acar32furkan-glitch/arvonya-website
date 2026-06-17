@@ -56,12 +56,39 @@ create index if not exists properties_is_active_created_at_idx
 create index if not exists vehicles_is_active_created_at_idx
   on public.vehicles (is_active, created_at desc);
 
+create table if not exists public.leads (
+  id text primary key,
+  name text not null,
+  phone text not null,
+  property_type text,
+  region text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists leads_created_at_idx
+  on public.leads (created_at desc);
+
+create table if not exists public.appointments (
+  id text primary key,
+  name text not null,
+  phone text not null,
+  datetime text not null,
+  listing_title text,
+  status text not null default 'pending',
+  created_at timestamptz not null default now()
+);
+
+create index if not exists appointments_created_at_idx
+  on public.appointments (created_at desc);
+
 -- ---------------------------------------------------------------------------
 -- Row Level Security (anon key — read-only public listings)
 -- ---------------------------------------------------------------------------
 
 alter table public.properties enable row level security;
 alter table public.vehicles enable row level security;
+alter table public.leads enable row level security;
+alter table public.appointments enable row level security;
 
 create policy "Public read active properties"
   on public.properties

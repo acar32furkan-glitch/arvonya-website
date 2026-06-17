@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStore, COMPANY } from "@/lib/store";
+import { supabase } from "@/utils/supabase";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
@@ -17,19 +18,20 @@ export function LeadForm() {
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name || !phone) return;
-    const formData = new FormData(e.currentTarget);
 
     try {
-      const response = await fetch("/", {
-        method: "POST",
-        body: formData,
+      const lead = { id: `l${Date.now()}`, name, phone, propertyType, region, createdAt: Date.now() };
+      const { error } = await supabase.from("leads").insert({
+        id: lead.id,
+        name,
+        phone,
+        property_type: propertyType,
+        region,
       });
 
-      if (!response.ok) {
-        throw new Error("Netlify form submit failed");
-      }
+      if (error) throw error;
 
-      addLead({ id: `l${Date.now()}`, name, phone, propertyType, region, createdAt: Date.now() });
+      addLead(lead);
       setSent(true);
       toast.success("Teşekkürler, sizi arayacağız.");
       setName("");
@@ -52,19 +54,13 @@ export function LeadForm() {
     >
       <div className="rounded-3xl border border-border bg-white p-8 md:p-12 shadow-md">
         <div className="mb-8">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-[#2EAA4A] mb-2">Arvonya Group</p>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-[#137A3A] mb-2">Arvonya Group</p>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#1A1A1A]">
             Size en uygun teklif için bilgilerinizi bırakın
           </h2>
           <p className="text-sm text-muted-foreground mt-2">Sizi en kısa sürede {COMPANY.phone} numarasından arayalım.</p>
         </div>
-        <form
-          name="arvonya-lead"
-          data-netlify="true"
-          onSubmit={submit}
-          className="grid grid-cols-1 md:grid-cols-5 gap-5 md:items-end"
-        >
-          <input type="hidden" name="form-name" value="arvonya-lead" />
+        <form onSubmit={submit} className="grid grid-cols-1 md:grid-cols-5 gap-5 md:items-end">
           <FloatingInput name="name" label="İsim" value={name} onChange={setName} />
           <FloatingInput name="phone" label="Telefon Numarası" value={phone} onChange={setPhone} type="tel" />
           <FloatingSelect name="propertyType" label="Mülk Türü" value={propertyType} onChange={setPropertyType} options={types} />
