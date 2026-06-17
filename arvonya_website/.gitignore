@@ -35,3 +35,9 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+.vercel
+.env*
+
+# Optimized images metadata (internal tooling output)
+/public/optimized
