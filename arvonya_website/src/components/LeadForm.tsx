@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStore, COMPANY } from "@/lib/store";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export function LeadForm() {
   const { addLead, properties } = useStore();
@@ -13,13 +14,32 @@ export function LeadForm() {
   const regions = Array.from(new Set(properties.map(p => p.location))).sort();
   const types = ["Konut / Daire", "Arsa / Bahçe", "İşyeri", "Müstakil Ev", "Araç"];
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name || !phone) return;
-    addLead({ id: `l${Date.now()}`, name, phone, propertyType, region, createdAt: Date.now() });
-    setSent(true);
-    setName(""); setPhone(""); setPropertyType(""); setRegion("");
-    setTimeout(() => setSent(false), 4000);
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Netlify form submit failed");
+      }
+
+      addLead({ id: `l${Date.now()}`, name, phone, propertyType, region, createdAt: Date.now() });
+      setSent(true);
+      toast.success("Teşekkürler, sizi arayacağız.");
+      setName("");
+      setPhone("");
+      setPropertyType("");
+      setRegion("");
+      setTimeout(() => setSent(false), 4000);
+    } catch {
+      toast.error("Gönderim sırasında bir sorun oluştu.");
+    }
   };
 
   return (
@@ -38,11 +58,17 @@ export function LeadForm() {
           </h2>
           <p className="text-sm text-muted-foreground mt-2">Sizi en kısa sürede {COMPANY.phone} numarasından arayalım.</p>
         </div>
-        <form onSubmit={submit} className="grid grid-cols-1 md:grid-cols-5 gap-5 md:items-end">
-          <FloatingInput label="İsim" value={name} onChange={setName} />
-          <FloatingInput label="Telefon Numarası" value={phone} onChange={setPhone} type="tel" />
-          <FloatingSelect label="Mülk Türü" value={propertyType} onChange={setPropertyType} options={types} />
-          <FloatingSelect label="Bölge" value={region} onChange={setRegion} options={regions} />
+        <form
+          name="arvonya-lead"
+          data-netlify="true"
+          onSubmit={submit}
+          className="grid grid-cols-1 md:grid-cols-5 gap-5 md:items-end"
+        >
+          <input type="hidden" name="form-name" value="arvonya-lead" />
+          <FloatingInput name="name" label="İsim" value={name} onChange={setName} />
+          <FloatingInput name="phone" label="Telefon Numarası" value={phone} onChange={setPhone} type="tel" />
+          <FloatingSelect name="propertyType" label="Mülk Türü" value={propertyType} onChange={setPropertyType} options={types} />
+          <FloatingSelect name="region" label="Bölge" value={region} onChange={setRegion} options={regions} />
           <button type="submit" className="btn-outline-orange h-12 whitespace-nowrap">
             {sent ? "Talebiniz alındı ✓" : "Beni Arasın"}
           </button>
@@ -52,10 +78,11 @@ export function LeadForm() {
   );
 }
 
-function FloatingInput({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
+function FloatingInput({ name, label, value, onChange, type = "text" }: { name: string; label: string; value: string; onChange: (v: string) => void; type?: string }) {
   return (
     <label className="relative block">
       <input
+        name={name}
         type={type}
         value={value}
         onChange={e => onChange(e.target.value)}
@@ -69,11 +96,12 @@ function FloatingInput({ label, value, onChange, type = "text" }: { label: strin
   );
 }
 
-function FloatingSelect({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+function FloatingSelect({ name, label, value, onChange, options }: { name: string; label: string; value: string; onChange: (v: string) => void; options: string[] }) {
   return (
     <label className="relative block">
       <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-1">{label}</span>
       <select
+        name={name}
         value={value}
         onChange={e => onChange(e.target.value)}
         className="w-full h-9 bg-transparent border-b-2 border-border focus:border-[#1A1A1A] outline-none text-sm appearance-none cursor-pointer"

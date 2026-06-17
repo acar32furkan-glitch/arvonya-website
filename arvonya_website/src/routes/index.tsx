@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { AmbientBackdrop } from "@/components/AmbientBackdrop";
 import { FilterCapsule } from "@/components/FilterCapsule";
 import { ChatbotCapsule } from "@/components/ChatbotCapsule";
+import { CookieBanner } from "@/components/CookieBanner";
 import { GayrimenkulView, OtomotivView, DisTicaretView, TercumeView, KurumsalView } from "@/views/SectorViews";
 
 export const Route = createFileRoute("/")({
@@ -13,8 +14,16 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
       { name: "description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri. Arvonya Group ile değer katan stratejik çözümler." },
-      { property: "og:title", content: "Arvonya Grup" },
-      { property: "og:description", content: "Kurumsal Güven, Kalıcı İstikrar" },
+      { name: "author", content: "Arvonya Grup" },
+      { property: "og:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
+      { property: "og:description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri." },
+      { property: "og:image", content: "https://arvonya-website.netlify.app/logo_preview.png" },
+      { property: "og:url", content: "https://arvonya-website.netlify.app" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
+      { name: "twitter:description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri." },
+      { name: "twitter:image", content: "https://arvonya-website.netlify.app/logo_preview.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
@@ -42,6 +51,7 @@ function Home() {
       </main>
       <FilterCapsule />
       <ChatbotCapsule />
+      <CookieBanner />
     </div>
   );
 }

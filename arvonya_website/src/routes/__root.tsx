@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -77,23 +78,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Captures and displays exact screenshots, providing a precise visual representation of application states." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Captures and displays exact screenshots, providing a precise visual representation of application states." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Captures and displays exact screenshots, providing a precise visual representation of application states." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/514389bc-8252-4406-b2d1-d8fcdbeddc2a/id-preview-3acd483e--167676b8-6999-4446-ad6e-5bb327e5f4d7.lovable.app-1780755381628.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/514389bc-8252-4406-b2d1-d8fcdbeddc2a/id-preview-3acd483e--167676b8-6999-4446-ad6e-5bb327e5f4d7.lovable.app-1780755381628.png" },
+      { title: "Arvonya Grup | Gayrimenkul, Otomotiv, Dış Ticaret, Tercüme" },
+      { name: "description", content: "Isparta merkezli çok sektörlü hizmet grubu. Emlak, otomotiv, dış ticaret ve profesyonel tercüme çözümleri." },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        src: "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",
+        async: true,
+      },
+      {
+        children:
+          "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');",
       },
     ],
   }),
@@ -124,6 +125,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Toaster />
     </QueryClientProvider>
   );
 }

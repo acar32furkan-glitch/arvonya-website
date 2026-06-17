@@ -6,9 +6,6 @@ import { LeadForm } from "@/components/LeadForm";
 import { Hero } from "@/components/Hero";
 import { NedenArvonya } from "@/components/NedenArvonya";
 import { Footer } from "@/components/Footer";
-import trade1 from "@/assets/trade-1.jpg";
-import trade2 from "@/assets/trade-2.jpg";
-import trade3 from "@/assets/trade-3.jpg";
 import { Upload, Check, Loader2 } from "lucide-react";
 
 const fade = { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -12 }, transition: { duration: 0.5 } };
@@ -72,9 +69,9 @@ export function OtomotivView() {
 }
 
 const trades = [
-  { title: "Uluslararası Lojistik & Taşımacılık", image: trade1, vision: "Kıtalar arası kesintisiz tedarik zinciri çözümleri ile ticareti hızlandırıyoruz." },
-  { title: "Endüstriyel Ürün İhracatı", image: trade2, vision: "Üretici ile küresel pazar arasında stratejik bir köprü kuruyoruz." },
-  { title: "Tekstil ve Hammadde Ticareti", image: trade3, vision: "Anadolu'nun tekstil mirasını dünyanın dört bir yanına taşıyoruz." },
+  { title: "Uluslararası Lojistik & Taşımacılık", image: "/assets/trade-1-DoYZ0sL6.jpg", vision: "Kıtalar arası kesintisiz tedarik zinciri çözümleri ile ticareti hızlandırıyoruz." },
+  { title: "Endüstriyel Ürün İhracatı", image: "/assets/trade-2-C0Gb9mJp.jpg", vision: "Üretici ile küresel pazar arasında stratejik bir köprü kuruyoruz." },
+  { title: "Tekstil ve Hammadde Ticareti", image: "/assets/trade-3-CGhQqm8D.jpg", vision: "Anadolu'nun tekstil mirasını dünyanın dört bir yanına taşıyoruz." },
 ];
 
 export function DisTicaretView() {
@@ -196,18 +193,19 @@ function Select({ label, value, onChange }: { label: string; value: string; onCh
 }
 
 export function KurumsalView() {
+  const { lang } = useStore();
   const tabs = [
-    { id: "biz", label: "Biz Kimiz", content: "Arvonya Group; emlak, yatırım, otomotiv ve dış ticaret sektörleri ile profesyonel tercüme hizmetlerinde faaliyet gösteren çok yönlü kurumsal bir yapıdır. 'Kurumsal Güven, Kalıcı İstikrar' ilkesiyle değer katan stratejik çözümler sunuyoruz." },
-    { id: "misyon", label: "Misyonumuz", content: "Müşterilerimize her sektörde şeffaf, ölçülebilir ve sürdürülebilir değer üretmek; uluslararası standartlarda hizmet kalitesini Türk iş dünyasına taşımak." },
-    { id: "vizyon", label: "Vizyonumuz", content: "Bölgemizde güvenin ve kurumsal istikrarın referans markası olmak; teknoloji, insan ve sermayeyi en yüksek verimle birleştirmek." },
+    { id: "biz", label: tr("Biz Kimiz", lang), content: tr("Arvonya Group; emlak, yatırım, otomotiv ve dış ticaret sektörleri ile profesyonel tercüme hizmetlerinde faaliyet gösteren çok yönlü kurumsal bir yapıdır. 'Kurumsal Güven, Kalıcı İstikrar' ilkesiyle değer katan stratejik çözümler sunuyoruz.", lang) },
+    { id: "misyon", label: tr("Misyonumuz", lang), content: tr("Müşterilerimize her sektörde şeffaf, ölçülebilir ve sürdürülebilir değer üretmek; uluslararası standartlarda hizmet kalitesini Türk iş dünyasına taşımak.", lang) },
+    { id: "vizyon", label: tr("Vizyonumuz", lang), content: tr("Bölgemizde güvenin ve kurumsal istikrarın referans markası olmak; teknoloji, insan ve sermayeyi en yüksek verimle birleştirmek.", lang) },
   ];
   const [active, setActive] = useState(tabs[0].id);
   const current = tabs.find(t => t.id === active)!;
   return (
     <motion.section {...fade} className="mx-auto max-w-4xl px-6 pt-32 pb-24">
       <header className="mb-12 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">Kurumsal</p>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Kurumsal Güven, Kalıcı İstikrar</h1>
+        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">{tr("Kurumsal", lang)}</p>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{tr("Kurumsal Güven, Kalıcı İstikrar", lang)}</h1>
       </header>
       <div className="rounded-3xl border border-border bg-card p-2">
         <div className="flex gap-1 overflow-x-auto p-1 bg-secondary/50 rounded-2xl">

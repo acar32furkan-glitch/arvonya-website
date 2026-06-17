@@ -4,13 +4,15 @@ import { formatPrice, useStore, tr, type Listing } from "@/lib/store";
 import { Bed, Bath, Maximize, Calendar, Gauge, Settings2, Fuel, ShieldCheck, Heart, Layers, MapPin, ScrollText, Trees } from "lucide-react";
 import { useState } from "react";
 
-export function ListingCard({ item }: { item: Listing }) {
+export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing; showWhatsAppShare?: boolean }) {
   const { currency, lang, favorites, toggleFavorite } = useStore();
   const hasImages = item.images && item.images.length > 0;
   const isArsa = item.kind === "property" && item.subType === "arsa";
   const thumbs = hasImages ? [...item.images, ...item.images, ...item.images, ...item.images].slice(0, 4) : [];
   const [active, setActive] = useState(0);
   const fav = favorites.includes(item.id);
+  const whatsappText = `Merhaba, ${item.title} ilanı hakkında bilgi almak istiyorum. https://arvonya-website.netlify.app/listing/${item.id}`;
+  const whatsappHref = `https://wa.me/905382402246?text=${encodeURIComponent(whatsappText)}`;
 
   return (
     <motion.div
@@ -108,6 +110,32 @@ export function ListingCard({ item }: { item: Listing }) {
           </div>
         </div>
       </Link>
+      {showWhatsAppShare && (
+        <div className="border-t border-border/80 px-6 pb-5 pt-4 md:px-8">
+          <div className="flex items-center gap-4 text-xs">
+            <button
+              type="button"
+              onClick={() => toggleFavorite(item.id)}
+              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[#E8521A]"
+              aria-label="Favorilere ekle"
+            >
+              <Heart className="h-3.5 w-3.5" style={{ color: fav ? "#E8521A" : "currentColor", fill: fav ? "#E8521A" : "transparent" }} />
+              <span>{fav ? "Favorilerde" : "Favorilere Ekle"}</span>
+            </button>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 font-medium text-brand-green transition-opacity hover:opacity-80"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 fill-current">
+                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.1.55 4.15 1.6 5.96L0 24l6.33-1.66a11.78 11.78 0 0 0 5.75 1.47h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.45-8.35Zm-8.44 18.34h-.01a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-3.75.98 1-3.65-.23-.38a9.9 9.9 0 0 1-1.52-5.3c0-5.45 4.43-9.88 9.88-9.88 2.64 0 5.12 1.03 6.98 2.89a9.81 9.81 0 0 1 2.9 6.99c0 5.45-4.44 9.88-9.9 9.88Zm5.41-7.37c-.3-.15-1.75-.86-2.03-.96-.27-.1-.47-.15-.66.15-.2.3-.76.95-.93 1.14-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.41-1.48-.89-.79-1.5-1.76-1.68-2.06-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.66-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.75-.72 2-1.42.25-.69.25-1.28.18-1.42-.08-.14-.28-.22-.58-.37Z" />
+              </svg>
+              <span>WhatsApp'ta Paylaş</span>
+            </a>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }

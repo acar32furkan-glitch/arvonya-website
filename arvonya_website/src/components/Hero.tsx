@@ -2,9 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useStore, tr, type ListingType, type View } from "@/lib/store";
-import heroImg from "@/assets/hero-estate.jpg";
-import property1Img from "@/assets/property-1.jpg";
-import carImg from "@/assets/car-1.jpg";
 
 /* ─────────────────────────────────────────
    Grain texture overlay
@@ -25,7 +22,7 @@ function GrainOverlay() {
   );
 }
 
-/* ── Dot grid ── */
+/*─ Dot grid ── */
 function DotGrid() {
   return (
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
@@ -81,7 +78,7 @@ export function Hero() {
           style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
         >
           <img
-            src={heroImg}
+            src="/assets/hero-estate-o0EkCtrk.jpg"
             alt="Arvonya Emlak"
             className="h-full w-full object-cover object-center"
           />
@@ -211,14 +208,14 @@ function SectorBand() {
   const { setView, lang } = useStore();
   const [hover, setHover] = useState<View | null>(null);
 
-  const panels: { id: View; label: string; sub: string; img: string; accent: string }[] = [
-    { id: "gayrimenkul", label: "Gayrimenkul", sub: "Satılık · Kiralık · Arsa", img: property1Img, accent: "#2EAA4A" },
-    { id: "otomotiv",    label: "Otomotiv",    sub: "Sıfır & İkinci El Araçlar", img: carImg,      accent: "#E8521A" },
+  const sectors: { id: View; label: string; sub: string; img: string; accent: string }[] = [
+    { id: "gayrimenkul", label: "Gayrimenkul", sub: "Satılık · Kiralık · Arsa", img: "/assets/property-1-CBDHeObv.jpg", accent: "#2EAA4A" },
+    { id: "otomotiv",    label: "Otomotiv",    sub: "Sıfır & İkinci El Araçlar", img: "/assets/car-1-BNcuS9Yg.jpg",      accent: "#E8521A" },
   ];
 
   return (
     <div className="flex flex-col gap-4 md:flex-row" onMouseLeave={() => setHover(null)}>
-      {panels.map(p => {
+      {sectors.map(p => {
         const expanded = hover === p.id;
         const collapsed = hover !== null && hover !== p.id;
         return (

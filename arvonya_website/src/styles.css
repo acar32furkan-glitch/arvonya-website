@@ -57,17 +57,17 @@
   --muted-foreground: #6b6b6b;
   --accent: #f5f5f5;
   --accent-foreground: #1a1a1a;
-  --destructive: #E8521A;
+  --destructive: #F5640A;
   --destructive-foreground: #ffffff;
   --border: #ececec;
   --input: #ececec;
   --ring: #1a1a1a;
 
   /* Arvonya brand — exact corporate hex */
-  --brand-orange: #E8521A;
-  --brand-green: #2EAA4A;
-  --brand-orange-soft: rgba(232, 82, 26, 0.12);
-  --brand-green-soft: rgba(46, 170, 74, 0.12);
+  --brand-orange: #F5640A;
+  --brand-green: #20AD51;
+  --brand-orange-soft: rgba(245, 100, 10, 0.12);
+  --brand-green-soft: rgba(32, 173, 81, 0.12);
 }
 
 @layer base {
@@ -84,23 +84,23 @@
 @utility btn-outline-orange {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   padding: 0.625rem 1.25rem; border-radius: 9999px;
-  border: 2px solid #E8521A; color: #E8521A; background: transparent;
+  border: 2px solid #F5640A; color: #F5640A; background: transparent;
   font-weight: 600; font-size: 0.875rem;
   transition: background-color .25s ease, color .25s ease, transform .2s ease;
 }
 @utility btn-outline-orange-hover {
-  background-color: #E8521A; color: #fff;
+  background-color: #F5640A; color: #fff;
 }
 @utility btn-outline-green {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   padding: 0.625rem 1.25rem; border-radius: 9999px;
-  border: 2px solid #2EAA4A; color: #2EAA4A; background: transparent;
+  border: 2px solid #20AD51; color: #20AD51; background: transparent;
   font-weight: 600; font-size: 0.875rem;
   transition: background-color .25s ease, color .25s ease, transform .2s ease;
 }
 
-.btn-outline-orange:hover { background: #E8521A; color: #fff; }
-.btn-outline-green:hover  { background: #2EAA4A; color: #fff; }
+.btn-outline-orange:hover { background: #F5640A; color: #fff; }
+.btn-outline-green:hover  { background: #20AD51; color: #fff; }
 .btn-outline-red {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   padding: 0.5rem 1rem; border-radius: 9999px;
