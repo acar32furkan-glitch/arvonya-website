@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { formatPrice, useStore, tr, type Listing } from "@/lib/store";
 import { Bed, Bath, Maximize, Calendar, Gauge, Settings2, Fuel, ShieldCheck, Heart, Layers, MapPin, ScrollText, Trees } from "lucide-react";
 import { useState } from "react";
+import { ResponsivePicture } from "@/components/ResponsivePicture";
 
 export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing; showWhatsAppShare?: boolean }) {
   const { currency, lang, favorites, toggleFavorite } = useStore();
@@ -11,7 +12,7 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
   const thumbs = hasImages ? [...item.images, ...item.images, ...item.images, ...item.images].slice(0, 4) : [];
   const [active, setActive] = useState(0);
   const fav = favorites.includes(item.id);
-  const whatsappText = `Merhaba, ${item.title} ilanı hakkında bilgi almak istiyorum. https://arvonya-website.netlify.app/listing/${item.id}`;
+  const whatsappText = `Merhaba, ${item.title} ilanı hakkında bilgi almak istiyorum. https://arvonya-website.vercel.app/listing/${item.id}`;
   const whatsappHref = `https://wa.me/905382402246?text=${encodeURIComponent(whatsappText)}`;
 
   return (
@@ -25,7 +26,14 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
       <div className="flex flex-col lg:flex-row">
         <div className={`relative aspect-[16/10] ${isArsa ? "lg:w-full lg:aspect-[16/7]" : "lg:w-4/5 lg:aspect-[16/8]"} overflow-hidden bg-muted`}>
           {hasImages ? (
-            <img src={thumbs[active]} alt={item.title} className="h-full w-full object-cover transition-all duration-500" />
+            <ResponsivePicture
+              src={thumbs[active]}
+              alt={item.title}
+              className="h-full w-full object-cover transition-all duration-500"
+              sizes={isArsa ? "(min-width: 1024px) 100vw, 100vw" : "(min-width: 1024px) 64vw, 100vw"}
+              width={1600}
+              height={900}
+            />
           ) : (
             <FallbackImage />
           )}
@@ -34,16 +42,16 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
             {item.code}
           </div>
           {item.kind === "property" && (
-            <div className="absolute top-4 left-24 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-white" style={{ backgroundColor: item.listingType === "rent" ? "#E8521A" : "#2EAA4A" }}>
+            <div className="absolute top-4 left-24 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-white" style={{ backgroundColor: item.listingType === "rent" ? "#B83A12" : "#137A3A" }}>
               {item.listingType === "rent" ? "Kiralık" : "Satılık"}
             </div>
           )}
           <button
             onClick={(e) => { e.preventDefault(); toggleFavorite(item.id); }}
             className="absolute top-4 right-4 p-2.5 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 hover:scale-110 transition"
-            aria-label="Favorilere ekle"
+            aria-label={fav ? `${item.title} favorilerden çıkar` : `${item.title} favorilere ekle`}
           >
-            <Heart className="h-4 w-4" style={{ color: fav ? "#E8521A" : "#fff", fill: fav ? "#E8521A" : "transparent" }} />
+            <Heart className="h-4 w-4" style={{ color: fav ? "#B83A12" : "#fff", fill: fav ? "#B83A12" : "transparent" }} />
           </button>
           <Link to="/listing/$id" params={{ id: item.id }} className="absolute inset-0" aria-label={item.title} />
         </div>
@@ -51,17 +59,26 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
         {!isArsa && (
           <div className="lg:w-1/5 grid grid-cols-4 lg:grid-cols-1 grid-rows-1 lg:grid-rows-4 gap-3 p-3 overflow-x-auto lg:overflow-visible">
             {thumbs.map((src, i) => {
-              const aura = item.kind === "property" && item.listingType === "rent" ? "rgba(232,82,26,0.25)" : "rgba(46,170,74,0.25)";
+              const aura = item.kind === "property" && item.listingType === "rent" ? "rgba(184,58,18,0.25)" : "rgba(19,122,58,0.25)";
               return (
                 <button
                   key={i}
                   onMouseEnter={() => setActive(i)}
                   onClick={() => setActive(i)}
+                  aria-label={`${item.title} görsel ${i + 1}`}
+                  aria-pressed={active === i}
                   className="relative aspect-square lg:aspect-auto overflow-hidden rounded-xl transition-all duration-300"
                   style={active === i ? { boxShadow: `0 0 22px ${aura}` } : undefined}
                 >
                   {hasImages ? (
-                    <img src={src} alt="" className={`h-full w-full object-cover transition-transform duration-300 ${active === i ? "scale-105" : "scale-100 hover:scale-105"}`} />
+                    <ResponsivePicture
+                      src={src}
+                      alt=""
+                      className={`h-full w-full object-cover transition-transform duration-300 ${active === i ? "scale-105" : "scale-100 hover:scale-105"}`}
+                      sizes="120px"
+                      width={300}
+                      height={300}
+                    />
                   ) : (
                     <div className="h-full w-full bg-gradient-to-br from-brand-green-soft to-brand-orange-soft" />
                   )}
@@ -104,7 +121,7 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
               )}
             </div>
           </div>
-          <div className="text-2xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-[#E8521A]">
+          <div className="text-2xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-[#B83A12]">
             {formatPrice(item.priceTL, currency)}
             {item.kind === "property" && item.listingType === "rent" && <span className="text-sm font-normal text-muted-foreground"> / ay</span>}
           </div>
@@ -116,10 +133,10 @@ export function ListingCard({ item, showWhatsAppShare = false }: { item: Listing
             <button
               type="button"
               onClick={() => toggleFavorite(item.id)}
-              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[#E8521A]"
-              aria-label="Favorilere ekle"
+              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[#B83A12]"
+              aria-label={fav ? `${item.title} favorilerden çıkar` : `${item.title} favorilere ekle`}
             >
-              <Heart className="h-3.5 w-3.5" style={{ color: fav ? "#E8521A" : "currentColor", fill: fav ? "#E8521A" : "transparent" }} />
+              <Heart className="h-3.5 w-3.5" style={{ color: fav ? "#B83A12" : "currentColor", fill: fav ? "#B83A12" : "transparent" }} />
               <span>{fav ? "Favorilerde" : "Favorilere Ekle"}</span>
             </button>
             <a
