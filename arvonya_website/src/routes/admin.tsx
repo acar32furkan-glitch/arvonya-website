@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { StoreProvider, useStore, type Property, type Vehicle, type Sector, COMPANY } from "@/lib/store";
+import { useStore, type Property, type Vehicle, type Sector, COMPANY } from "@/lib/store";
+import { supabase } from "@/utils/supabase";
 import { Logo } from "@/components/Logo";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,27 +8,24 @@ import { BarChart3, Home, Car, Languages, CalendarCheck, Inbox, MessageCircle, L
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin — Arvonya Group" }] }),
-  component: () => (
-    <StoreProvider>
-      <Admin />
-    </StoreProvider>
-  ),
+  component: () => <Admin />,
 });
 
 function Admin() {
   const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState("");
-  const adminPw = import.meta.env.VITE_ADMIN_PASSWORD ?? "arvonya2026";
+  // IMPORTANT: Set VITE_ADMIN_PASSWORD in your environment (e.g., .env or CI/CD dashboard)
+  const adminPw = import.meta.env.VITE_ADMIN_PASSWORD;
   const tryLogin = () => pw === adminPw ? setAuthed(true) : alert("Hatalı parola");
   if (!authed) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-[#2EAA4A]/10 via-white to-[#E8521A]/10">
+      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-[#137A3A]/10 via-white to-[#B83A12]/10">
         <div className="w-full max-w-sm bg-white rounded-3xl border border-border p-8 shadow-xl">
           <Logo size="text-2xl" />
           <h1 className="mt-6 text-xl font-semibold">Yönetim Paneli</h1>
           <p className="text-sm text-muted-foreground mt-1">Devam etmek için giriş yapın.</p>
           <input type="password" value={pw} onChange={e => setPw(e.target.value)} placeholder="Parola" className="mt-6 w-full px-4 py-3 rounded-xl border-2 border-border focus:border-[#1A1A1A] outline-none" onKeyDown={e => e.key === "Enter" && tryLogin()} />
-          <button onClick={tryLogin} className="mt-3 w-full py-3 rounded-full bg-[#1A1A1A] text-white font-medium hover:bg-[#2EAA4A] transition">Giriş</button>
+          <button onClick={tryLogin} className="mt-3 w-full py-3 rounded-full bg-[#1A1A1A] text-white font-medium hover:bg-[#137A3A] transition">Giriş</button>
           <Link to="/" className="block text-center mt-4 text-xs text-muted-foreground hover:underline">← Siteye dön</Link>
         </div>
       </div>
@@ -91,7 +89,7 @@ function AdminInner() {
               transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="fixed inset-y-0 left-0 z-50 w-64 bg-[#1A1A1A] p-6 flex flex-col md:hidden shadow-2xl"
             >
-              <button onClick={() => setMobileOpen(false)} className="absolute top-4 right-4 p-2 rounded-full text-white/70 hover:bg-white/10 hover:text-white"><X className="h-4 w-4" /></button>
+              <button onClick={() => setMobileOpen(false)} className="absolute top-4 right-4 p-2 rounded-full text-white/70 hover:bg-white/10 hover:text-white" aria-label="Menüyü kapat"><X className="h-4 w-4" /></button>
               {sidebarBody(true)}
             </motion.aside>
           </>
@@ -120,10 +118,10 @@ function AdminInner() {
 
 function Stats({ counts }: { counts: Record<string, number> }) {
   const cards = [
-    { label: "Emlak İlanları",    val: counts.properties,   color: "#2EAA4A", bg: "#2EAA4A15", icon: Home },
-    { label: "Araç İlanları",     val: counts.vehicles,     color: "#E8521A", bg: "#E8521A15", icon: Car },
-    { label: "Tercüme Talepleri", val: counts.translations, color: "#2EAA4A", bg: "#2EAA4A15", icon: Languages },
-    { label: "Randevular",        val: counts.appointments, color: "#E8521A", bg: "#E8521A15", icon: CalendarCheck },
+    { label: "Emlak İlanları",    val: counts.properties,   color: "#137A3A", bg: "#137A3A15", icon: Home },
+    { label: "Araç İlanları",     val: counts.vehicles,     color: "#B83A12", bg: "#B83A1215", icon: Car },
+    { label: "Tercüme Talepleri", val: counts.translations, color: "#137A3A", bg: "#137A3A15", icon: Languages },
+    { label: "Randevular",        val: counts.appointments, color: "#B83A12", bg: "#B83A1215", icon: CalendarCheck },
   ];
   return (
     <div>
@@ -179,7 +177,7 @@ function ListingsManager({ kind }: { kind: "property" | "vehicle" }) {
               <tr key={l.id}>
                 <td className="px-5 py-4 font-medium text-[#1A1A1A]">{l.title}</td>
                 <td className="px-5 py-4 text-muted-foreground">{l.code}</td>
-                <td className="px-5 py-4 font-semibold text-[#E8521A] whitespace-nowrap">{l.priceTL.toLocaleString("tr-TR")} TL</td>
+                <td className="px-5 py-4 font-semibold text-[#B83A12] whitespace-nowrap">{l.priceTL.toLocaleString("tr-TR")} TL</td>
                 <td className="px-5 py-4">
                   <div className="flex gap-2">
                     <button onClick={() => setEditing(l)} className="btn-outline-orange !py-1.5 !px-3 text-xs"><Pencil className="h-3 w-3" /> Düzenle</button>
@@ -207,10 +205,10 @@ function ListingsManager({ kind }: { kind: "property" | "vehicle" }) {
                 <p className="font-semibold text-[#1A1A1A] leading-tight">{l.title}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{l.code}</p>
               </div>
-              <span className="shrink-0 font-bold text-[#E8521A] text-sm whitespace-nowrap">{l.priceTL.toLocaleString("tr-TR")} TL</span>
+              <span className="shrink-0 font-bold text-[#B83A12] text-sm whitespace-nowrap">{l.priceTL.toLocaleString("tr-TR")} TL</span>
             </div>
             <div className="flex gap-2 mt-3">
-              <button onClick={() => setEditing(l)} className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 border-[#E8521A] text-[#E8521A] text-xs font-semibold hover:bg-[#E8521A]/5 transition">
+              <button onClick={() => setEditing(l)} className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 border-[#B83A12] text-[#B83A12] text-xs font-semibold hover:bg-[#B83A12]/5 transition">
                 <Pencil className="h-3 w-3" /> Düzenle
               </button>
               <button onClick={() => setConfirmDel({ id: l.id, title: l.title })} className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 border-red-500 text-red-500 text-xs font-semibold hover:bg-red-50 transition">
@@ -245,7 +243,7 @@ function ConfirmDelete({ title, onCancel, onConfirm }: { title: string; onCancel
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm" onClick={onCancel}>
       <motion.div initial={{ scale: 0.94, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.94, y: 20 }} onClick={e => e.stopPropagation()} className="w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl">
-        <h3 className="text-lg font-bold text-[#E8521A] mb-2">İlanı Sil</h3>
+        <h3 className="text-lg font-bold text-[#B83A12] mb-2">İlanı Sil</h3>
         <p className="text-sm text-[#1A1A1A] leading-relaxed mb-1">Bu ilanı sistemden tamamen kaldırmak istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
         <p className="text-xs text-muted-foreground italic mt-2 mb-6">"{title}"</p>
         <div className="flex gap-3 justify-end">
@@ -290,10 +288,40 @@ function ListingModal({ kind, initial, onClose }: { kind: "property" | "vehicle"
   });
 
   const fileRef = useRef<HTMLInputElement>(null);
-  const onFiles = (files: FileList | null) => {
-    if (!files) return;
-    const urls = Array.from(files).map(f => URL.createObjectURL(f));
-    setImages(prev => [...prev, ...urls]);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const listingId = init?.id ?? Date.now().toString();
+
+  const onFiles = async (files: FileList | null) => {
+    if (!files || uploadingImages) return;
+    setUploadingImages(true);
+    const uploadedUrls: string[] = [];
+
+    try {
+      for (const file of Array.from(files)) {
+        const safeName = file.name.replace(/[^\w.\-]+/g, "_");
+        const path = `${listingId}/${Date.now()}-${safeName}`;
+        const { error } = await supabase.storage.from("listings").upload(path, file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+        if (error) {
+          console.error("onFiles upload:", error);
+          alert(`Görsel yüklenemedi: ${file.name}`);
+          continue;
+        }
+        const { data } = supabase.storage.from("listings").getPublicUrl(path);
+        uploadedUrls.push(data.publicUrl);
+      }
+      if (uploadedUrls.length > 0) {
+        setImages(prev => [...prev, ...uploadedUrls]);
+      }
+    } catch (err) {
+      console.error("onFiles:", err);
+      alert("Görsel yüklenirken bir hata oluştu.");
+    } finally {
+      setUploadingImages(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
   };
 
   const save = () => {
@@ -342,17 +370,17 @@ function ListingModal({ kind, initial, onClose }: { kind: "property" | "vehicle"
 
           <div>
             <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-2">Görseller</label>
-            <input ref={fileRef} type="file" multiple accept="image/*" hidden onChange={e => onFiles(e.target.files)} />
-            <button type="button" onClick={() => fileRef.current?.click()} className="w-full border-2 border-dashed border-border rounded-2xl p-6 text-center hover:border-[#2EAA4A] transition flex flex-col items-center gap-2">
-              <Upload className="h-5 w-5 text-[#2EAA4A]" />
-              <span className="text-sm">Görsel yükle (çoklu seçim)</span>
+            <input ref={fileRef} type="file" multiple accept="image/*" hidden disabled={uploadingImages} onChange={e => void onFiles(e.target.files)} />
+            <button type="button" disabled={uploadingImages} onClick={() => fileRef.current?.click()} className="w-full border-2 border-dashed border-border rounded-2xl p-6 text-center hover:border-[#137A3A] transition flex flex-col items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              <Upload className="h-5 w-5 text-[#137A3A]" />
+              <span className="text-sm">{uploadingImages ? "Yükleniyor..." : "Görsel yükle (çoklu seçim)"}</span>
             </button>
             {images.length > 0 && (
               <div className="grid grid-cols-4 gap-2 mt-3">
                 {images.map((src, i) => (
                   <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-border">
                     <img src={src} className="h-full w-full object-cover" />
-                    <button onClick={() => setImages(images.filter((_, j) => j !== i))} className="absolute top-1 right-1 h-5 w-5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center"><X className="h-3 w-3" /></button>
+                    <button onClick={() => setImages(images.filter((_, j) => j !== i))} className="absolute top-1 right-1 h-5 w-5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center" aria-label="Görseli kaldır"><X className="h-3 w-3" /></button>
                   </div>
                 ))}
               </div>
@@ -399,7 +427,7 @@ function ListingModal({ kind, initial, onClose }: { kind: "property" | "vehicle"
 
           <div className="flex gap-3 justify-end pt-2">
             <button onClick={onClose} className="px-5 py-2.5 rounded-full border-2 border-border hover:border-[#1A1A1A] text-sm font-medium transition">İptal</button>
-            <button onClick={save} className="px-5 py-2.5 rounded-full bg-[#2EAA4A] hover:bg-[#258a3b] text-white text-sm font-semibold transition">{isEdit ? "Güncelle" : "Yayınla"}</button>
+            <button onClick={save} className="px-5 py-2.5 rounded-full bg-[#137A3A] hover:bg-[#0F6330] text-white text-sm font-semibold transition">{isEdit ? "Güncelle" : "Yayınla"}</button>
           </div>
         </div>
       </motion.div>
@@ -428,10 +456,10 @@ function SectorsManage() {
                 <td className="px-5 py-4 font-semibold text-[#1A1A1A]">{s.label}</td>
                 <td className="px-5 py-4 text-muted-foreground">{s.description}</td>
                 <td className="px-5 py-4">
-                  <button onClick={() => updateSector({ ...s, active: !s.active })} className={`relative h-6 w-11 rounded-full transition-colors ${s.active ? "bg-[#2EAA4A]" : "bg-neutral-300"}`} aria-label="Toggle">
+                  <button onClick={() => updateSector({ ...s, active: !s.active })} className={`relative h-6 w-11 rounded-full transition-colors ${s.active ? "bg-[#137A3A]" : "bg-neutral-300"}`} aria-label={s.active ? `${s.label} sektörünü pasif yap` : `${s.label} sektörünü aktif yap`}>
                     <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${s.active ? "left-[22px]" : "left-0.5"}`} />
                   </button>
-                  <span className={`ml-3 text-xs font-medium ${s.active ? "text-[#2EAA4A]" : "text-muted-foreground"}`}>{s.active ? "Aktif" : "Pasif"}</span>
+                  <span className={`ml-3 text-xs font-medium ${s.active ? "text-[#137A3A]" : "text-muted-foreground"}`}>{s.active ? "Aktif" : "Pasif"}</span>
                 </td>
                 <td className="px-5 py-4">
                   <button onClick={() => setEditing(s)} className="btn-outline-orange !py-1.5 !px-3 text-xs"><Pencil className="h-3 w-3" /> Düzenle</button>
@@ -448,14 +476,14 @@ function SectorsManage() {
           <div key={s.id} className="bg-white rounded-2xl border border-border p-4 shadow-sm">
             <div className="flex items-center justify-between gap-3">
               <p className="font-semibold text-[#1A1A1A]">{s.label}</p>
-              <button onClick={() => updateSector({ ...s, active: !s.active })} className={`relative shrink-0 h-6 w-11 rounded-full transition-colors ${s.active ? "bg-[#2EAA4A]" : "bg-neutral-300"}`}>
+              <button onClick={() => updateSector({ ...s, active: !s.active })} className={`relative shrink-0 h-6 w-11 rounded-full transition-colors ${s.active ? "bg-[#137A3A]" : "bg-neutral-300"}`} aria-label={s.active ? `${s.label} sektörünü pasif yap` : `${s.label} sektörünü aktif yap`}>
                 <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all ${s.active ? "left-[22px]" : "left-0.5"}`} />
               </button>
             </div>
             <p className="text-xs text-muted-foreground mt-1 mb-3">{s.description}</p>
             <div className="flex items-center justify-between">
-              <span className={`text-xs font-semibold ${s.active ? "text-[#2EAA4A]" : "text-muted-foreground"}`}>{s.active ? "● Aktif" : "○ Pasif"}</span>
-              <button onClick={() => setEditing(s)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[#E8521A] text-[#E8521A] text-xs font-semibold hover:bg-[#E8521A]/5 transition">
+              <span className={`text-xs font-semibold ${s.active ? "text-[#137A3A]" : "text-muted-foreground"}`}>{s.active ? "● Aktif" : "○ Pasif"}</span>
+              <button onClick={() => setEditing(s)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[#B83A12] text-[#B83A12] text-xs font-semibold hover:bg-[#B83A12]/5 transition">
                 <Pencil className="h-3 w-3" /> Düzenle
               </button>
             </div>
@@ -483,7 +511,7 @@ function SectorEditModal({ sector, onClose }: { sector: Sector; onClose: () => v
       <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} onClick={e => e.stopPropagation()} className="w-full max-w-lg bg-white rounded-3xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-xl font-bold text-[#1A1A1A]">Sektörü Düzenle</h3>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-secondary"><X className="h-4 w-4" /></button>
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-secondary" aria-label="Kapat"><X className="h-4 w-4" /></button>
         </div>
         <div className="space-y-4">
           <label className="block">
@@ -496,7 +524,7 @@ function SectorEditModal({ sector, onClose }: { sector: Sector; onClose: () => v
           </label>
           <div className="flex gap-3 justify-end pt-2">
             <button onClick={onClose} className="px-5 py-2.5 rounded-full border-2 border-border hover:border-[#1A1A1A] text-sm font-medium transition">İptal</button>
-            <button onClick={save} className="px-5 py-2.5 rounded-full bg-[#2EAA4A] hover:bg-[#258a3b] text-white text-sm font-semibold transition">Kaydet</button>
+            <button onClick={save} className="px-5 py-2.5 rounded-full bg-[#137A3A] hover:bg-[#0F6330] text-white text-sm font-semibold transition">Kaydet</button>
           </div>
         </div>
       </motion.div>
@@ -540,7 +568,7 @@ function RequestsTable({ type }: { type: "translations" | "appointments" }) {
                   <td className="px-5 py-4">{a.datetime}</td>
                   <td className="px-5 py-4">{a.listingTitle}</td>
                   <td className="px-5 py-4">
-                    <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-semibold" style={answered ? { backgroundColor: "rgba(46,170,74,0.15)", color: "#2EAA4A" } : { backgroundColor: "#FEF3C7", color: "#B45309" }}>
+                    <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-semibold" style={answered ? { backgroundColor: "rgba(19,122,58,0.15)", color: "#137A3A" } : { backgroundColor: "#FEF3C7", color: "#B45309" }}>
                       {answered ? <><Check className="h-3 w-3" /> Yanıtlandı</> : "Beklemede"}
                     </span>
                   </td>
@@ -549,7 +577,7 @@ function RequestsTable({ type }: { type: "translations" | "appointments" }) {
                       href={`https://wa.me/${a.phone.replace(/\D/g, "")}?text=${encodeURIComponent(`Merhaba ${a.name}, ${a.listingTitle} için randevu talebiniz onaylanmıştır.`)}`}
                       target="_blank" rel="noreferrer"
                       onClick={() => markAppointmentAnswered(a.id)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2EAA4A] hover:bg-[#258a3b] text-white text-xs font-semibold transition"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#137A3A] hover:bg-[#0F6330] text-white text-xs font-semibold transition"
                     >
                       <MessageCircle className="h-3 w-3" /> WhatsApp'tan Yanıtla
                     </a>
