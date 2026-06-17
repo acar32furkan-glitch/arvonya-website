@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,18 @@ export default defineConfig({
     react(),
     tailwindcss(),
     tsconfigPaths(),
+    ViteImageOptimizer({
+      svg: {
+        optimization: {
+          plugins: [{ name: "preset-default", params: {} }],
+        },
+      },
+      png: { quality: 82 },
+      jpeg: { quality: 82 },
+      jpg: { quality: 82 },
+      webp: { quality: 82 },
+      avif: { quality: 52 },
+    }),
   ],
   build: {
     outDir: "dist",
