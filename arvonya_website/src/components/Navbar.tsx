@@ -22,9 +22,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", v => setScrolled(v > 60));
+  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 60));
 
-  const visibleNav = sectors.filter(s => s.active);
+  const visibleNav = sectors.filter((s) => s.active);
   const onHero = view === "gayrimenkul" || view === "kurumsal";
   const transparent = onHero && !scrolled;
 
@@ -49,21 +49,31 @@ export function Navbar() {
             {visibleNav.map((n) => {
               const active = view === n.id;
               const accent = ACCENTS[n.id];
-              const accentColor = accent === "green" ? "#2EAA4A" : accent === "orange" ? "#E8521A" : "#1A1A1A";
+              const accentColor =
+                accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
               return (
                 <button
                   key={n.id}
                   onClick={() => setView(n.id)}
                   className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
-                  style={{ color: active && !transparent ? accentColor : transparent ? undefined : undefined }}
+                  style={{
+                    color:
+                      active && !transparent ? accentColor : transparent ? undefined : undefined,
+                  }}
                 >
                   {n.label}
                   {active && (
                     <motion.div
                       layoutId="nav-pill"
                       className="absolute inset-0 -z-10 rounded-full"
-                      style={{ backgroundColor: accent === "green" ? "rgba(46,170,74,0.12)" : accent === "orange" ? "rgba(232,82,26,0.12)" : "rgba(26,26,26,0.06)" }}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      style={{
+                        backgroundColor:
+                          accent === "green"
+                            ? "rgba(47,69,83,0.12)"
+                            : accent === "orange"
+                              ? "rgba(184,58,18,0.12)"
+                              : "rgba(26,26,26,0.06)",
+                      }}
                     />
                   )}
                 </button>
@@ -85,7 +95,9 @@ export function Navbar() {
             >
               <Heart className="h-5 w-5" />
               {favorites.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-brand-orange text-white text-[10px] font-bold flex items-center justify-center">{favorites.length}</span>
+                <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-brand-orange text-white text-[10px] font-bold flex items-center justify-center">
+                  {favorites.length}
+                </span>
               )}
             </button>
 
@@ -100,18 +112,34 @@ export function Navbar() {
               {open && (
                 <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-border bg-white/95 backdrop-blur-xl shadow-xl p-3 space-y-3 z-50">
                   <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">Language</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                      Language
+                    </div>
                     <div className="flex gap-1">
-                      {(["TR", "EN"] as Lang[]).map(l => (
-                        <button key={l} onClick={() => setLang(l)} className={`flex-1 px-2 py-1 text-xs rounded-md ${lang === l ? "bg-foreground text-background" : "hover:bg-secondary"}`}>{l}</button>
+                      {(["TR", "EN"] as Lang[]).map((l) => (
+                        <button
+                          key={l}
+                          onClick={() => setLang(l)}
+                          className={`flex-1 px-2 py-1 text-xs rounded-md ${lang === l ? "bg-foreground text-background" : "hover:bg-secondary"}`}
+                        >
+                          {l}
+                        </button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">Currency</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                      Currency
+                    </div>
                     <div className="flex gap-1">
-                      {(["TL", "USD", "EUR"] as Currency[]).map(c => (
-                        <button key={c} onClick={() => setCurrency(c)} className={`flex-1 px-2 py-1 text-xs rounded-md ${currency === c ? "bg-foreground text-background" : "hover:bg-secondary"}`}>{c}</button>
+                      {(["TL", "USD", "EUR"] as Currency[]).map((c) => (
+                        <button
+                          key={c}
+                          onClick={() => setCurrency(c)}
+                          className={`flex-1 px-2 py-1 text-xs rounded-md ${currency === c ? "bg-foreground text-background" : "hover:bg-secondary"}`}
+                        >
+                          {c}
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -121,7 +149,7 @@ export function Navbar() {
 
             {/* Mobile hamburger */}
             <button
-              onClick={() => setMobileOpen(v => !v)}
+              onClick={() => setMobileOpen((v) => !v)}
               className="lg:hidden p-2 rounded-full hover:bg-secondary transition"
               aria-label="Menü"
             >
@@ -144,16 +172,36 @@ export function Navbar() {
                 {visibleNav.map((n) => {
                   const active = view === n.id;
                   const accent = ACCENTS[n.id];
-                  const accentColor = accent === "green" ? "#2EAA4A" : accent === "orange" ? "#E8521A" : "#1A1A1A";
+                  const accentColor =
+                    accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
                   return (
                     <button
                       key={n.id}
-                      onClick={() => { setView(n.id); setMobileOpen(false); }}
+                      onClick={() => {
+                        setView(n.id);
+                        setMobileOpen(false);
+                      }}
                       className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
-                      style={{ color: active ? accentColor : undefined, backgroundColor: active ? (accent === "green" ? "rgba(46,170,74,0.08)" : accent === "orange" ? "rgba(232,82,26,0.08)" : "rgba(26,26,26,0.04)") : undefined }}
+                      style={{
+                        color: active ? accentColor : undefined,
+                        backgroundColor: active
+                          ? accent === "green"
+                            ? "rgba(47,69,83,0.08)"
+                            : accent === "orange"
+                              ? "rgba(184,58,18,0.08)"
+                              : "rgba(26,26,26,0.04)"
+                          : undefined,
+                      }}
                     >
-                      {active && <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />}
-                      {!active && <span className="h-1.5 w-1.5 rounded-full shrink-0 bg-transparent" />}
+                      {active && (
+                        <span
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: accentColor }}
+                        />
+                      )}
+                      {!active && (
+                        <span className="h-1.5 w-1.5 rounded-full shrink-0 bg-transparent" />
+                      )}
                       {n.label}
                     </button>
                   );
@@ -168,13 +216,25 @@ export function Navbar() {
                 {/* Lang + Currency in mobile */}
                 <div className="pt-3 border-t border-border/40 flex items-center justify-between">
                   <div className="flex gap-1">
-                    {(["TR", "EN"] as Lang[]).map(l => (
-                      <button key={l} onClick={() => setLang(l)} className={`px-3 py-1.5 text-xs rounded-full font-medium ${lang === l ? "bg-foreground text-background" : "bg-secondary"}`}>{l}</button>
+                    {(["TR", "EN"] as Lang[]).map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => setLang(l)}
+                        className={`px-3 py-1.5 text-xs rounded-full font-medium ${lang === l ? "bg-foreground text-background" : "bg-secondary"}`}
+                      >
+                        {l}
+                      </button>
                     ))}
                   </div>
                   <div className="flex gap-1">
-                    {(["TL", "USD", "EUR"] as Currency[]).map(c => (
-                      <button key={c} onClick={() => setCurrency(c)} className={`px-3 py-1.5 text-xs rounded-full font-medium ${currency === c ? "bg-foreground text-background" : "bg-secondary"}`}>{c}</button>
+                    {(["TL", "USD", "EUR"] as Currency[]).map((c) => (
+                      <button
+                        key={c}
+                        onClick={() => setCurrency(c)}
+                        className={`px-3 py-1.5 text-xs rounded-full font-medium ${currency === c ? "bg-foreground text-background" : "bg-secondary"}`}
+                      >
+                        {c}
+                      </button>
                     ))}
                   </div>
                 </div>

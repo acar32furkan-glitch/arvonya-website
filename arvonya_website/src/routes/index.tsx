@@ -7,21 +7,37 @@ import { AmbientBackdrop } from "@/components/AmbientBackdrop";
 import { FilterCapsule } from "@/components/FilterCapsule";
 import { ChatbotCapsule } from "@/components/ChatbotCapsule";
 import { CookieBanner } from "@/components/CookieBanner";
-import { GayrimenkulView, OtomotivView, DisTicaretView, TercumeView, KurumsalView } from "@/views/SectorViews";
+import {
+  GayrimenkulView,
+  OtomotivView,
+  DisTicaretView,
+  TercumeView,
+  KurumsalView,
+} from "@/views/SectorViews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
-      { name: "description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri. Arvonya Group ile değer katan stratejik çözümler." },
+      {
+        name: "description",
+        content:
+          "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri. Arvonya Group ile değer katan stratejik çözümler.",
+      },
       { name: "author", content: "Arvonya Grup" },
       { property: "og:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
-      { property: "og:description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri." },
+      {
+        property: "og:description",
+        content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri.",
+      },
       { property: "og:image", content: "https://arvonya-website.vercel.app/logo_preview.png" },
       { property: "og:url", content: "https://arvonya-website.vercel.app" },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
-      { name: "twitter:description", content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri." },
+      {
+        name: "twitter:description",
+        content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri.",
+      },
       { name: "twitter:image", content: "https://arvonya-website.vercel.app/logo_preview.png" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

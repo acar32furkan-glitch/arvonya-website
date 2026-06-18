@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { StoreProvider, COMPANY } from "@/lib/store";
+import { COMPANY } from "@/lib/store";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -9,11 +9,7 @@ export const Route = createFileRoute("/iletisim")({
   head: () => ({
     meta: [{ title: "İletişim | Arvonya Grup" }],
   }),
-  component: () => (
-    <StoreProvider>
-      <IletisimPage />
-    </StoreProvider>
-  ),
+  component: () => <IletisimPage />,
 });
 
 function IletisimPage() {
@@ -72,7 +68,9 @@ function IletisimPage() {
                 </a>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">Çalışma Saatleri</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                  Çalışma Saatleri
+                </p>
                 <p className="mt-1">Pzt-Cmt 09:00-18:00</p>
               </div>
             </div>
@@ -89,35 +87,41 @@ function IletisimPage() {
 
             <div className="mt-5 space-y-4">
               <label className="block">
-                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">İsim</span>
+                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">
+                  İsim
+                </span>
                 <input
                   name="name"
                   type="text"
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   className="h-11 w-full rounded-xl border border-border bg-white px-3 outline-none transition focus:border-[#1A1A1A]"
                   required
                 />
               </label>
 
               <label className="block">
-                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Telefon</span>
+                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">
+                  Telefon
+                </span>
                 <input
                   name="phone"
                   type="tel"
                   value={phone}
-                  onChange={e => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="h-11 w-full rounded-xl border border-border bg-white px-3 outline-none transition focus:border-[#1A1A1A]"
                   required
                 />
               </label>
 
               <label className="block">
-                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">Mesaj</span>
+                <span className="mb-1 block text-xs uppercase tracking-widest text-muted-foreground">
+                  Mesaj
+                </span>
                 <textarea
                   name="message"
                   value={message}
-                  onChange={e => setMessage(e.target.value)}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="min-h-[120px] w-full rounded-xl border border-border bg-white px-3 py-2 outline-none transition focus:border-[#1A1A1A]"
                   required
                 />

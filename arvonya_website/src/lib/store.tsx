@@ -17,33 +17,54 @@ export const COMPANY = {
 };
 
 export interface BaseListing {
-  id: string; code: string; title: string; priceTL: number;
-  images: string[]; description: string; createdAt: number;
+  id: string;
+  code: string;
+  title: string;
+  priceTL: number;
+  images: string[];
+  description: string;
+  createdAt: number;
 }
 export interface Property extends BaseListing {
-  kind: "property"; listingType: ListingType; subType: PropertySubType;
-  location: string; type: string;
-  rooms?: string; m2?: number; baths?: number; floor?: string;
-  area?: number; tapu?: string; imar?: string;
+  kind: "property";
+  listingType: ListingType;
+  subType: PropertySubType;
+  location: string;
+  type: string;
+  rooms?: string;
+  m2?: number;
+  baths?: number;
+  floor?: string;
+  area?: number;
+  tapu?: string;
+  imar?: string;
   // Sahibinden-style extended spec matrix (konut)
-  binaYasi?: string;        // Bina Yaşı
-  katSayisi?: string;       // Kat Sayısı
-  isitma?: string;          // Isıtma Tipi
-  balkon?: string;          // Balkon Durumu
-  kullanim?: string;        // Kullanım Durumu
+  binaYasi?: string; // Bina Yaşı
+  katSayisi?: string; // Kat Sayısı
+  isitma?: string; // Isıtma Tipi
+  balkon?: string; // Balkon Durumu
+  kullanim?: string; // Kullanım Durumu
 }
 export interface Vehicle extends BaseListing {
-  kind: "vehicle"; listingType: ListingType;
-  year: number; km: number; gear: string; fuel: string; damage: string;
+  kind: "vehicle";
+  listingType: ListingType;
+  year: number;
+  km: number;
+  gear: string;
+  fuel: string;
+  damage: string;
   // Sahibinden-style extended spec matrix (otomotiv)
-  renk?: string;            // Renk
-  motorGucu?: string;       // Motor Gücü (HP)
-  ekspertiz?: string;       // Boya / Değişen Özeti
+  renk?: string; // Renk
+  motorGucu?: string; // Motor Gücü (HP)
+  ekspertiz?: string; // Boya / Değişen Özeti
 }
 export type Listing = Property | Vehicle;
 
 export interface Sector {
-  id: View; label: string; description: string; active: boolean;
+  id: View;
+  label: string;
+  description: string;
+  active: boolean;
 }
 
 export { seedProperties, seedVehicles, defaultSectors };
@@ -60,14 +81,39 @@ export function tr(text: string, lang: Lang) {
   return translate(text, lang);
 }
 
-export interface Appointment { id: string; name: string; phone: string; datetime: string; listingTitle: string; status: "pending" | "answered"; }
-export interface TranslationRequest { id: string; from: string; to: string; fileName: string; name: string; email: string; phone: string; }
-export interface LeadRequest { id: string; name: string; phone: string; propertyType?: string; region?: string; createdAt: number; }
+export interface Appointment {
+  id: string;
+  name: string;
+  phone: string;
+  datetime: string;
+  listingTitle: string;
+  status: "pending" | "answered";
+}
+export interface TranslationRequest {
+  id: string;
+  from: string;
+  to: string;
+  fileName: string;
+  name: string;
+  email: string;
+  phone: string;
+}
+export interface LeadRequest {
+  id: string;
+  name: string;
+  phone: string;
+  propertyType?: string;
+  region?: string;
+  createdAt: number;
+}
 
 interface Ctx {
-  view: View; setView: (v: View) => void;
-  currency: Currency; setCurrency: (c: Currency) => void;
-  lang: Lang; setLang: (l: Lang) => void;
+  view: View;
+  setView: (v: View) => void;
+  currency: Currency;
+  setCurrency: (c: Currency) => void;
+  lang: Lang;
+  setLang: (l: Lang) => void;
   isLoading: boolean;
   properties: Property[];
   vehicles: Vehicle[];
@@ -83,14 +129,22 @@ interface Ctx {
   addLead: (l: LeadRequest) => void;
   favorites: string[];
   toggleFavorite: (id: string) => void;
-  sort: SortKey; setSort: (s: SortKey) => void;
-  listingTypeFilter: ListingType; setListingTypeFilter: (t: ListingType) => void;
-  searchQuery: string; setSearchQuery: (q: string) => void;
-  locationFilter: string; setLocationFilter: (l: string) => void;
-  priceMin: string; setPriceMin: (v: string) => void;
-  priceMax: string; setPriceMax: (v: string) => void;
-  roomsFilter: string; setRoomsFilter: (v: string) => void;
-  vehicleTypeFilter: string; setVehicleTypeFilter: (v: string) => void;
+  sort: SortKey;
+  setSort: (s: SortKey) => void;
+  listingTypeFilter: ListingType;
+  setListingTypeFilter: (t: ListingType) => void;
+  searchQuery: string;
+  setSearchQuery: (q: string) => void;
+  locationFilter: string;
+  setLocationFilter: (l: string) => void;
+  priceMin: string;
+  setPriceMin: (v: string) => void;
+  priceMax: string;
+  setPriceMax: (v: string) => void;
+  roomsFilter: string;
+  setRoomsFilter: (v: string) => void;
+  vehicleTypeFilter: string;
+  setVehicleTypeFilter: (v: string) => void;
   sectors: Sector[];
   updateSector: (s: Sector) => void;
 }
@@ -99,7 +153,12 @@ const StoreCtx = createContext<Ctx | null>(null);
 
 function loadLS<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
-  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; }
+  try {
+    const v = localStorage.getItem(key);
+    return v ? JSON.parse(v) : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 type PropertyRow = {
@@ -157,11 +216,15 @@ type AppointmentRow = {
 };
 
 function parseLocation(location: string) {
-  const parts = location.split(" / ").map(s => s.trim());
+  const parts = location.split(" / ").map((s) => s.trim());
   return { city: parts[0], district: parts[1], neighborhood: parts[2] };
 }
 
-function formatLocation(city?: string | null, district?: string | null, neighborhood?: string | null) {
+function formatLocation(
+  city?: string | null,
+  district?: string | null,
+  neighborhood?: string | null,
+) {
   return [city, district, neighborhood].filter(Boolean).join(" / ");
 }
 
@@ -307,8 +370,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       try {
         const [propertiesRes, vehiclesRes, appointmentsRes] = await Promise.all([
-          supabase.from("properties").select("*").eq("is_active", true).order("created_at", { ascending: false }),
-          supabase.from("vehicles").select("*").eq("is_active", true).order("created_at", { ascending: false }),
+          supabase
+            .from("properties")
+            .select("*")
+            .eq("is_active", true)
+            .order("created_at", { ascending: false }),
+          supabase
+            .from("vehicles")
+            .select("*")
+            .eq("is_active", true)
+            .order("created_at", { ascending: false }),
           supabase.from("appointments").select("*").order("created_at", { ascending: false }),
         ]);
 
@@ -343,30 +414,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setFavorites(loadLS("arvonya_favorites", []));
     setSectors(loadLS("arvonya_sectors", defaultSectors));
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const addListing = (l: Listing) => {
-    if (l.kind === "property") setProperties(prev => [l, ...prev]);
-    else setVehicles(prev => [l, ...prev]);
+    if (l.kind === "property") setProperties((prev) => [l, ...prev]);
+    else setVehicles((prev) => [l, ...prev]);
 
     void (async () => {
-      const { error } = l.kind === "property"
-        ? await supabase.from("properties").insert(propertyToRow(l as Property))
-        : await supabase.from("vehicles").insert(vehicleToRow(l as Vehicle));
+      const { error } =
+        l.kind === "property"
+          ? await supabase.from("properties").insert(propertyToRow(l as Property))
+          : await supabase.from("vehicles").insert(vehicleToRow(l as Vehicle));
       if (error) console.error("addListing:", error);
     })();
   };
 
   const updateListing = (l: Listing) => {
     if (l.kind === "property") {
-      setProperties(prev => prev.map(p => p.id === l.id ? l as Property : p));
+      setProperties((prev) => prev.map((p) => (p.id === l.id ? (l as Property) : p)));
       void (async () => {
         const { error } = await supabase.from("properties").upsert(propertyToRow(l as Property));
         if (error) console.error("updateListing:", error);
       })();
     } else {
-      setVehicles(prev => prev.map(v => v.id === l.id ? l as Vehicle : v));
+      setVehicles((prev) => prev.map((v) => (v.id === l.id ? (l as Vehicle) : v)));
       void (async () => {
         const { error } = await supabase.from("vehicles").upsert(vehicleToRow(l as Vehicle));
         if (error) console.error("updateListing:", error);
@@ -375,8 +449,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   };
 
   const deleteListing = (kind: "property" | "vehicle", id: string) => {
-    if (kind === "property") setProperties(prev => prev.filter(p => p.id !== id));
-    else setVehicles(prev => prev.filter(v => v.id !== id));
+    if (kind === "property") setProperties((prev) => prev.filter((p) => p.id !== id));
+    else setVehicles((prev) => prev.filter((v) => v.id !== id));
 
     void (async () => {
       const table = kind === "property" ? "properties" : "vehicles";
@@ -386,7 +460,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   };
 
   const addAppointment = (a: Appointment) => {
-    setAppointments(prev => [a, ...prev]);
+    setAppointments((prev) => [a, ...prev]);
     void (async () => {
       const { error } = await supabase.from("appointments").insert(appointmentToRow(a));
       if (error) console.error("addAppointment:", error);
@@ -394,28 +468,82 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   };
 
   const markAppointmentAnswered = (id: string) => {
-    const next = appointments.map(a => a.id === id ? { ...a, status: "answered" as const } : a);
+    const next = appointments.map((a) => (a.id === id ? { ...a, status: "answered" as const } : a));
     setAppointments(next);
     void (async () => {
-      const { error } = await supabase.from("appointments").update({ status: "answered" }).eq("id", id);
+      const { error } = await supabase
+        .from("appointments")
+        .update({ status: "answered" })
+        .eq("id", id);
       if (error) console.error("markAppointmentAnswered:", error);
     })();
   };
 
-  const addTranslationRequest = (t: TranslationRequest) => { const next = [t, ...translationRequests]; setTranslationRequests(next); localStorage.setItem("arvonya_translations", JSON.stringify(next)); };
-  const addLead = (l: LeadRequest) => { const next = [l, ...leads]; setLeads(next); localStorage.setItem("arvonya_leads", JSON.stringify(next)); };
+  const addTranslationRequest = (t: TranslationRequest) => {
+    const next = [t, ...translationRequests];
+    setTranslationRequests(next);
+    localStorage.setItem("arvonya_translations", JSON.stringify(next));
+  };
+  const addLead = (l: LeadRequest) => {
+    const next = [l, ...leads];
+    setLeads(next);
+    localStorage.setItem("arvonya_leads", JSON.stringify(next));
+  };
   const toggleFavorite = (id: string) => {
-    const next = favorites.includes(id) ? favorites.filter(f => f !== id) : [id, ...favorites];
-    setFavorites(next); localStorage.setItem("arvonya_favorites", JSON.stringify(next));
+    const next = favorites.includes(id) ? favorites.filter((f) => f !== id) : [id, ...favorites];
+    setFavorites(next);
+    localStorage.setItem("arvonya_favorites", JSON.stringify(next));
   };
   const updateSector = (s: Sector) => {
-    const next = sectors.map(x => x.id === s.id ? s : x);
+    const next = sectors.map((x) => (x.id === s.id ? s : x));
     setSectors(next);
     localStorage.setItem("arvonya_sectors", JSON.stringify(next));
   };
 
   return (
-    <StoreCtx.Provider value={{ view, setView, currency, setCurrency, lang, setLang, isLoading, properties, vehicles, addListing, updateListing, deleteListing, appointments, addAppointment, markAppointmentAnswered, translationRequests, addTranslationRequest, leads, addLead, favorites, toggleFavorite, sort, setSort, listingTypeFilter, setListingTypeFilter, searchQuery, setSearchQuery, locationFilter, setLocationFilter, priceMin, setPriceMin, priceMax, setPriceMax, roomsFilter, setRoomsFilter, vehicleTypeFilter, setVehicleTypeFilter, sectors, updateSector }}>
+    <StoreCtx.Provider
+      value={{
+        view,
+        setView,
+        currency,
+        setCurrency,
+        lang,
+        setLang,
+        isLoading,
+        properties,
+        vehicles,
+        addListing,
+        updateListing,
+        deleteListing,
+        appointments,
+        addAppointment,
+        markAppointmentAnswered,
+        translationRequests,
+        addTranslationRequest,
+        leads,
+        addLead,
+        favorites,
+        toggleFavorite,
+        sort,
+        setSort,
+        listingTypeFilter,
+        setListingTypeFilter,
+        searchQuery,
+        setSearchQuery,
+        locationFilter,
+        setLocationFilter,
+        priceMin,
+        setPriceMin,
+        priceMax,
+        setPriceMax,
+        roomsFilter,
+        setRoomsFilter,
+        vehicleTypeFilter,
+        setVehicleTypeFilter,
+        sectors,
+        updateSector,
+      }}
+    >
       {children}
     </StoreCtx.Provider>
   );

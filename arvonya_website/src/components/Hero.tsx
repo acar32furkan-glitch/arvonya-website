@@ -2,10 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useStore, tr, type ListingType, type View } from "@/lib/store";
+import { ResponsivePicture } from "@/components/ResponsivePicture";
 
-/* ─────────────────────────────────────────
-   Grain texture overlay
-───────────────────────────────────────── */
 function GrainOverlay() {
   return (
     <svg
@@ -14,7 +12,12 @@ function GrainOverlay() {
       aria-hidden="true"
     >
       <filter id="grain-hero">
-        <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="4" stitchTiles="stitch" />
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.68"
+          numOctaves="4"
+          stitchTiles="stitch"
+        />
         <feColorMatrix type="saturate" values="0" />
       </filter>
       <rect width="100%" height="100%" filter="url(#grain-hero)" opacity="0.048" />
@@ -22,7 +25,6 @@ function GrainOverlay() {
   );
 }
 
-/*─ Dot grid ── */
 function DotGrid() {
   return (
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
@@ -36,7 +38,6 @@ function DotGrid() {
   );
 }
 
-/* ── Animated word span ── */
 function Word({ text, delay, color }: { text: string; delay: number; color?: string }) {
   return (
     <motion.span
@@ -61,15 +62,12 @@ export function Hero() {
 
   return (
     <section className="relative">
-      {/* ── HERO: sol metin %55 + sağ fotoğraf %45 ── */}
       <div className="relative min-h-screen overflow-hidden bg-[#F4F0EA]">
         <GrainOverlay />
         <DotGrid />
 
-        {/* Yeşil glow — sol orta */}
-        <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[#2EAA4A]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[#2f4553]/10 blur-[120px]" />
 
-        {/* ── SAĞ: tam ekran fotoğraf, diagonal clip ── */}
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           animate={{ opacity: 1, x: 0 }}
@@ -77,26 +75,27 @@ export function Hero() {
           className="absolute right-0 top-0 hidden h-full w-[48%] lg:block"
           style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
         >
-          <img
-            src="/assets/hero-estate-o0EkCtrk.jpg"
+          <ResponsivePicture
+            src="/assets/hero-estate-o0EkCtrk.webp"
             alt="Arvonya Emlak"
             className="h-full w-full object-cover object-center"
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            width={1920}
+            height={832}
+            priority
+            loading="eager"
           />
-          {/* Sol kenarda cream'e geçiş */}
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(to right, rgba(244,240,234,0.55) 0%, rgba(244,240,234,0.12) 22%, transparent 42%)",
+              background:
+                "linear-gradient(to right, rgba(244,240,234,0.55) 0%, rgba(244,240,234,0.12) 22%, transparent 42%)",
             }}
           />
-          {/* Alt gradient — koyu tonu kırmak için */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#F4F0EA]/30 via-transparent to-transparent" />
         </motion.div>
 
-        {/* ── SOL: metin paneli ── */}
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
-
-          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -106,21 +105,18 @@ export function Hero() {
             Gayrimenkul · Otomotiv · Güven
           </motion.p>
 
-          {/* Başlık — kelime kelime */}
           <h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]">
             <span className="block">
               <Word text="Isparta'nın" delay={0.65} />
             </span>
             <span className="block font-bold">
-              <Word text="Güvenilir" delay={0.78} color="#2EAA4A" />
+              <Word text="Güvenilir" delay={0.78} color="#2f4553" />
             </span>
             <span className="block">
-              <Word text="Emlak" delay={0.90} />{" "}
-              <Word text="Adresi." delay={0.98} />
+              <Word text="Emlak" delay={0.9} /> <Word text="Adresi." delay={0.98} />
             </span>
           </h1>
 
-          {/* Açıklama */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -130,16 +126,15 @@ export function Hero() {
             Satılık ve kiralık konut, arsa ve ticari portföy — tek çatı altında.
           </motion.p>
 
-          {/* Satılık / Kiralık toggle */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.35, duration: 0.6 }}
             className="mt-9 flex w-fit gap-1.5 rounded-full border border-neutral-200 bg-white/70 p-1.5 shadow-sm backdrop-blur-sm"
           >
-            {tabs.map(t => {
+            {tabs.map((t) => {
               const active = listingTypeFilter === t.id;
-              const color = t.id === "sale" ? "#2EAA4A" : "#E8521A";
+              const color = t.id === "sale" ? "#2f4553" : "#B83A12";
               return (
                 <button
                   key={t.id}
@@ -161,7 +156,6 @@ export function Hero() {
             })}
           </motion.div>
 
-          {/* CTA butonu */}
           <motion.button
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -170,27 +164,28 @@ export function Hero() {
               document.getElementById("sector-band")?.scrollIntoView({ behavior: "smooth" });
             }}
             className="mt-6 flex w-fit items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white shadow-lg transition-opacity hover:opacity-90 active:scale-[0.98]"
-            style={{ backgroundColor: "#E8521A" }}
+            style={{ backgroundColor: "#B83A12" }}
           >
             İlanları Keşfet
             <ArrowUpRight className="h-4 w-4" />
           </motion.button>
 
-          {/* Scroll ok */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.1 }}
             className="mt-16 flex flex-col gap-1 text-neutral-400"
           >
-            <motion.div animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}>
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            >
               <ChevronDown className="h-4 w-4" />
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* ── SECTOR BAND ── */}
       <div id="sector-band" className="bg-[#F4F0EA] px-6 pb-16">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 h-px bg-neutral-200" />
@@ -209,49 +204,75 @@ function SectorBand() {
   const [hover, setHover] = useState<View | null>(null);
 
   const sectors: { id: View; label: string; sub: string; img: string; accent: string }[] = [
-    { id: "gayrimenkul", label: "Gayrimenkul", sub: "Satılık · Kiralık · Arsa", img: "/assets/property-1-CBDHeObv.jpg", accent: "#2EAA4A" },
-    { id: "otomotiv",    label: "Otomotiv",    sub: "Sıfır & İkinci El Araçlar", img: "/assets/car-1-BNcuS9Yg.jpg",      accent: "#E8521A" },
+    {
+      id: "gayrimenkul",
+      label: "Gayrimenkul",
+      sub: "Satılık · Kiralık · Arsa",
+      img: "/assets/property-1-CBDHeObv.webp",
+      accent: "#2f4553",
+    },
+    {
+      id: "otomotiv",
+      label: "Otomotiv",
+      sub: "Sıfır & İkinci El Araçlar",
+      img: "/assets/car-1-BNcuS9Yg.webp",
+      accent: "#B83A12",
+    },
   ];
 
   return (
     <div className="flex flex-col gap-4 md:flex-row" onMouseLeave={() => setHover(null)}>
-      {sectors.map(p => {
+      {sectors.map((p) => {
         const expanded = hover === p.id;
         const collapsed = hover !== null && hover !== p.id;
         return (
-          <button
+          <article
             key={p.id}
-            onMouseEnter={() => setHover(p.id)}
-            onClick={() => setView(p.id)}
-            className={`group relative min-h-[200px] w-full max-h-[500px] overflow-hidden rounded-3xl shadow-md transition-all duration-500 ease-in-out h-[56vw] md:h-[44vh] ${
+            className={`relative min-h-[200px] w-full max-h-[500px] overflow-hidden rounded-3xl shadow-md transition-all duration-500 ease-in-out h-[56vw] md:h-[44vh] ${
               expanded ? "md:flex-[3]" : collapsed ? "md:flex-[1]" : "md:flex-1"
             }`}
           >
-            <img
-              src={p.img}
-              alt={p.label}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-            <div
-              className={`absolute top-0 left-0 h-1 transition-all duration-500 ${expanded ? "w-full" : "w-0"}`}
-              style={{ backgroundColor: p.accent }}
-            />
-            <div className="absolute inset-0 flex flex-col justify-end p-6 text-left md:p-8">
-              <span className="mb-2 text-[10px] uppercase tracking-[0.4em] text-white/60">{p.sub}</span>
-              <div className="flex items-end justify-between gap-4">
-                <h3 className={`font-black leading-tight text-white transition-all duration-300 ${expanded ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"}`}>
-                  {p.label}
-                </h3>
-                <span
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-all duration-300 group-hover:rotate-45 group-hover:scale-110"
-                  style={{ backgroundColor: p.accent }}
-                >
-                  <ArrowUpRight className="h-5 w-5" />
+            <h2 className="sr-only">{p.label}</h2>
+            <button
+              onMouseEnter={() => setHover(p.id)}
+              onClick={() => setView(p.id)}
+              aria-label={`${p.label} sektörüne git`}
+              className="absolute inset-0 group"
+            >
+              <ResponsivePicture
+                src={p.img}
+                alt={p.label}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                sizes="(min-width: 768px) 50vw, 100vw"
+                width={1600}
+                height={900}
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+              <span
+                className="absolute top-0 left-0 h-1 transition-all duration-500"
+                style={{ backgroundColor: p.accent, width: expanded ? "100%" : "0%" }}
+              />
+              <span className="absolute inset-0 flex flex-col justify-end p-6 text-left md:p-8">
+                <span className="mb-2 text-[10px] uppercase tracking-[0.4em] text-white/60">
+                  {p.sub}
                 </span>
-              </div>
-            </div>
-          </button>
+                <span className="flex items-end justify-between gap-4">
+                  <span
+                    className={`font-black leading-tight text-white transition-all duration-300 ${expanded ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"}`}
+                  >
+                    {p.label}
+                  </span>
+                  <span
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-all duration-300 group-hover:rotate-45 group-hover:scale-110"
+                    style={{ backgroundColor: p.accent }}
+                    aria-hidden="true"
+                  >
+                    <ArrowUpRight className="h-5 w-5" />
+                  </span>
+                </span>
+              </span>
+            </button>
+          </article>
         );
       })}
     </div>

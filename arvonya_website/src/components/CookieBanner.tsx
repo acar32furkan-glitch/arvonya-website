@@ -32,7 +32,8 @@ export function CookieBanner() {
     <section className="w-full border-t-2 border-brand-orange bg-white">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs text-[#1A1A1A] sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>
-          Bu site deneyiminizi iyileştirmek için çerez kullanmaktadır. KVKK kapsamında bilgi için Gizlilik Politikamızı inceleyebilirsiniz.
+          Bu site deneyiminizi iyileştirmek için çerez kullanmaktadır. KVKK kapsamında bilgi için
+          Gizlilik Politikamızı inceleyebilirsiniz.
         </p>
         <div className="flex items-center gap-2">
           <button

@@ -1,14 +1,5 @@
-# Arvonya Group - LLM.txt
+# Arvonya Group
 
-Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri sunan Arvonya Group.
+Arvonya Group, Isparta merkezli çok sektörlü bir gayrimenkul ve kurumsal güven platformudur. Satılık, kiralık konut; arsa ve bahçe ilanları; sıfır & ikinci el araçlar için özel gayrimenkul çözümleri sunar. Profesyonel tercüme hizmetleri ve dış ticaret danışmanlığı ile müşterilerine entegre hizmet sağlar.
 
-## Hizmetlerimiz:
-- Konut / Daire
-- Arsa / Bahçe  
-- İşyeri / Ofis
-- Müstakil Ev
-- Araç / Vehicle
-
-Turizm, otel ve arazi arazileri dışındaki gayrimenkul ihtiyaçlarınız için uzman danışmanlık hizmeti sağlıyoruz.
-
-İletişim: +90 212 555 0123
+[Arvonya Group Ana Sayfası](https://arvonya.com)

@@ -12,7 +12,7 @@ export function LeadForm() {
   const [region, setRegion] = useState("");
   const [sent, setSent] = useState(false);
 
-  const regions = Array.from(new Set(properties.map(p => p.location))).sort();
+  const regions = Array.from(new Set(properties.map((p) => p.location))).sort();
   const types = ["Konut / Daire", "Arsa / Bahçe", "İşyeri", "Müstakil Ev", "Araç"];
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,7 +20,14 @@ export function LeadForm() {
     if (!name || !phone) return;
 
     try {
-      const lead = { id: `l${Date.now()}`, name, phone, propertyType, region, createdAt: Date.now() };
+      const lead = {
+        id: `l${Date.now()}`,
+        name,
+        phone,
+        propertyType,
+        region,
+        createdAt: Date.now(),
+      };
       const { error } = await supabase.from("leads").insert({
         id: lead.id,
         name,
@@ -54,17 +61,39 @@ export function LeadForm() {
     >
       <div className="rounded-3xl border border-border bg-white p-8 md:p-12 shadow-md">
         <div className="mb-8">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-[#137A3A] mb-2">Arvonya Group</p>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-[#2f4553] mb-2">
+            Arvonya Group
+          </p>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#1A1A1A]">
             Size en uygun teklif için bilgilerinizi bırakın
           </h2>
-          <p className="text-sm text-muted-foreground mt-2">Sizi en kısa sürede {COMPANY.phone} numarasından arayalım.</p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Sizi en kısa sürede {COMPANY.phone} numarasından arayalım.
+          </p>
         </div>
         <form onSubmit={submit} className="grid grid-cols-1 md:grid-cols-5 gap-5 md:items-end">
           <FloatingInput name="name" label="İsim" value={name} onChange={setName} />
-          <FloatingInput name="phone" label="Telefon Numarası" value={phone} onChange={setPhone} type="tel" />
-          <FloatingSelect name="propertyType" label="Mülk Türü" value={propertyType} onChange={setPropertyType} options={types} />
-          <FloatingSelect name="region" label="Bölge" value={region} onChange={setRegion} options={regions} />
+          <FloatingInput
+            name="phone"
+            label="Telefon Numarası"
+            value={phone}
+            onChange={setPhone}
+            type="tel"
+          />
+          <FloatingSelect
+            name="propertyType"
+            label="Mülk Türü"
+            value={propertyType}
+            onChange={setPropertyType}
+            options={types}
+          />
+          <FloatingSelect
+            name="region"
+            label="Bölge"
+            value={region}
+            onChange={setRegion}
+            options={regions}
+          />
           <button type="submit" className="btn-outline-orange h-12 whitespace-nowrap">
             {sent ? "Talebiniz alındı ✓" : "Beni Arasın"}
           </button>
@@ -74,14 +103,26 @@ export function LeadForm() {
   );
 }
 
-function FloatingInput({ name, label, value, onChange, type = "text" }: { name: string; label: string; value: string; onChange: (v: string) => void; type?: string }) {
+function FloatingInput({
+  name,
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+}) {
   return (
     <label className="relative block">
       <input
         name={name}
         type={type}
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         placeholder=" "
         className="peer w-full h-12 px-1 pt-4 pb-1 bg-transparent border-b-2 border-border focus:border-[#1A1A1A] outline-none transition-colors text-sm"
       />
@@ -92,18 +133,36 @@ function FloatingInput({ name, label, value, onChange, type = "text" }: { name: 
   );
 }
 
-function FloatingSelect({ name, label, value, onChange, options }: { name: string; label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+function FloatingSelect({
+  name,
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+}) {
   return (
     <label className="relative block">
-      <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-1">{label}</span>
+      <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-1">
+        {label}
+      </span>
       <select
         name={name}
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         className="w-full h-9 bg-transparent border-b-2 border-border focus:border-[#1A1A1A] outline-none text-sm appearance-none cursor-pointer"
       >
         <option value="">Seçiniz</option>
-        {options.map(o => <option key={o} value={o}>{o}</option>)}
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
       </select>
     </label>
   );
