@@ -1,4 +1,10 @@
-export function Logo({ className = "", size = "text-base" }: { className?: string; size?: string }) {
+export function Logo({
+  className = "",
+  size = "text-base",
+}: {
+  className?: string;
+  size?: string;
+}) {
   const sizes = {
     "text-sm": { icon: "h-6 w-6", text: "text-xs" },
     "text-base": { icon: "h-7 w-7", text: "text-xs" },
@@ -32,10 +38,16 @@ export function Logo({ className = "", size = "text-base" }: { className?: strin
         <rect x="52" y="37" width="4" height="8" fill="#e5e5e5" />
       </svg>
       <span className="flex flex-col leading-[1.1]">
-        <span className={`font-bold ${s.text} tracking-wider uppercase`} style={{ color: "#f97316" }}>
+        <span
+          className={`font-bold ${s.text} tracking-wider uppercase`}
+          style={{ color: "#f97316" }}
+        >
           ARVONYA
         </span>
-        <span className={`font-bold ${s.text} tracking-wider uppercase`} style={{ color: "#22c55e" }}>
+        <span
+          className={`font-bold ${s.text} tracking-wider uppercase`}
+          style={{ color: "#22c55e" }}
+        >
           GRUP
         </span>
       </span>
