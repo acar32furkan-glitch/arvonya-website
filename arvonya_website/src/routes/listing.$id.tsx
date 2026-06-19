@@ -279,14 +279,14 @@ function Detail() {
         <div className="p-6 lg:p-10 space-y-4 overflow-y-auto">
           {images.length > 0 ? (
             images.map((src, i) => (
-              <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+              <div key={i} className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-muted">
                 <ResponsivePicture
                   src={src}
                   alt={`${item.title} görsel ${i + 1}`}
                   className="h-full w-full object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   width={1600}
-                  height={900}
+                  height={1067}
                   priority={i === 0}
                   loading={i === 0 ? "eager" : "lazy"}
                 />
@@ -296,7 +296,7 @@ function Detail() {
               </div>
             ))
           ) : (
-            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brand-green-soft/40 via-white to-brand-orange-soft/40 flex items-center justify-center">
+            <div className="aspect-[3/2] rounded-2xl bg-gradient-to-br from-brand-green-soft/40 via-white to-brand-orange-soft/40 flex items-center justify-center">
               <p className="text-muted-foreground">Arvonya Group — Görsel Hazırlanıyor</p>
             </div>
           )}
