@@ -499,7 +499,7 @@ function ListingModal({
 
     try {
       for (const file of Array.from(files)) {
-        const safeName = file.name.replace(/[^\w.\-]+/g, "_");
+        const safeName = file.name.replace(/[^\w.-]+/g, "_");
         const path = `${listingId}/${Date.now()}-${safeName}`;
         const { error } = await supabase.storage.from("listings").upload(path, file, {
           cacheControl: "3600",

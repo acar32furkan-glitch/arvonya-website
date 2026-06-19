@@ -41,121 +41,123 @@ export function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-4">
-          <Link to="/" onClick={() => setView("gayrimenkul")}>
-            <Logo size="text-xl" />
-          </Link>
-
-          <nav className="hidden lg:flex items-center gap-1">
-            {visibleNav.map((n) => {
-              const active = view === n.id;
-              const accent = ACCENTS[n.id];
-              const accentColor =
-                accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
-              return (
-                <button
-                  key={n.id}
-                  onClick={() => setView(n.id)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
-                  style={{
-                    color:
-                      active && !transparent ? accentColor : transparent ? undefined : undefined,
-                  }}
-                >
-                  {n.label}
-                  {active && (
-                    <motion.div
-                      layoutId="nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full"
-                      style={{
-                        backgroundColor:
-                          accent === "green"
-                            ? "rgba(47,69,83,0.12)"
-                            : accent === "orange"
-                              ? "rgba(184,58,18,0.12)"
-                              : "rgba(26,26,26,0.06)",
-                      }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-            <Link
-              to="/iletisim"
-              className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
-            >
-              İletişim
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setFavOpen(true)}
-              className="relative p-2 rounded-full hover:bg-secondary transition"
-              aria-label="Favoriler"
-            >
-              <Heart className="h-5 w-5" />
-              {favorites.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-brand-orange text-white text-[10px] font-bold flex items-center justify-center">
-                  {favorites.length}
-                </span>
-              )}
-            </button>
-
-            <div className="relative hidden lg:block">
-              <button
-                onClick={() => setOpen(!open)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-white/60 hover:bg-secondary transition"
+          <div className="flex min-w-0 flex-1 items-center justify-between gap-3">
+            <nav className="hidden lg:flex items-center gap-1">
+              {visibleNav.map((n) => {
+                const active = view === n.id;
+                const accent = ACCENTS[n.id];
+                const accentColor =
+                  accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
+                return (
+                  <button
+                    key={n.id}
+                    onClick={() => setView(n.id)}
+                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
+                    style={{
+                      color:
+                        active && !transparent ? accentColor : transparent ? undefined : undefined,
+                    }}
+                  >
+                    {n.label}
+                    {active && (
+                      <motion.div
+                        layoutId="nav-pill"
+                        className="absolute inset-0 -z-10 rounded-full"
+                        style={{
+                          backgroundColor:
+                            accent === "green"
+                              ? "rgba(47,69,83,0.12)"
+                              : accent === "orange"
+                                ? "rgba(184,58,18,0.12)"
+                                : "rgba(26,26,26,0.06)",
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+              <Link
+                to="/iletisim"
+                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
               >
-                {lang} · {currency}
-                <ChevronDown className="h-3 w-3" />
-              </button>
-              {open && (
-                <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-border bg-white/95 backdrop-blur-xl shadow-xl p-3 space-y-3 z-50">
-                  <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
-                      Language
-                    </div>
-                    <div className="flex gap-1">
-                      {(["TR", "EN"] as Lang[]).map((l) => (
-                        <button
-                          key={l}
-                          onClick={() => setLang(l)}
-                          className={`flex-1 px-2 py-1 text-xs rounded-md ${lang === l ? "bg-foreground text-background" : "hover:bg-secondary"}`}
-                        >
-                          {l}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
-                      Currency
-                    </div>
-                    <div className="flex gap-1">
-                      {(["TL", "USD", "EUR"] as Currency[]).map((c) => (
-                        <button
-                          key={c}
-                          onClick={() => setCurrency(c)}
-                          className={`flex-1 px-2 py-1 text-xs rounded-md ${currency === c ? "bg-foreground text-background" : "hover:bg-secondary"}`}
-                        >
-                          {c}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+                İletişim
+              </Link>
+            </nav>
 
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setMobileOpen((v) => !v)}
-              className="lg:hidden p-2 rounded-full hover:bg-secondary transition"
-              aria-label="Menü"
-            >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setFavOpen(true)}
+                className="relative p-2 rounded-full hover:bg-secondary transition"
+                aria-label="Favoriler"
+              >
+                <Heart className="h-5 w-5" />
+                {favorites.length > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-brand-orange text-white text-[10px] font-bold flex items-center justify-center">
+                    {favorites.length}
+                  </span>
+                )}
+              </button>
+
+              <div className="relative hidden lg:block">
+                <button
+                  onClick={() => setOpen(!open)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-white/60 hover:bg-secondary transition"
+                >
+                  {lang} · {currency}
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+                {open && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-border bg-white/95 backdrop-blur-xl shadow-xl p-3 space-y-3 z-50">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                        Language
+                      </div>
+                      <div className="flex gap-1">
+                        {(["TR", "EN"] as Lang[]).map((l) => (
+                          <button
+                            key={l}
+                            onClick={() => setLang(l)}
+                            className={`flex-1 px-2 py-1 text-xs rounded-md ${lang === l ? "bg-foreground text-background" : "hover:bg-secondary"}`}
+                          >
+                            {l}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                        Currency
+                      </div>
+                      <div className="flex gap-1">
+                        {(["TL", "USD", "EUR"] as Currency[]).map((c) => (
+                          <button
+                            key={c}
+                            onClick={() => setCurrency(c)}
+                            className={`flex-1 px-2 py-1 text-xs rounded-md ${currency === c ? "bg-foreground text-background" : "hover:bg-secondary"}`}
+                          >
+                            {c}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile hamburger */}
+              <button
+                onClick={() => setMobileOpen((v) => !v)}
+                className="lg:hidden p-2 rounded-full hover:bg-secondary transition"
+                aria-label="Menü"
+              >
+                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
+
+          <Link to="/" onClick={() => setView("gayrimenkul")} className="shrink-0">
+            <Logo />
+          </Link>
         </div>
 
         {/* Mobile slide-down menu */}

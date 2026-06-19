@@ -84,6 +84,7 @@ export function Hero() {
             height={832}
             priority
             loading="eager"
+            fetchPriority="high"
           />
           <div
             className="absolute inset-0"
