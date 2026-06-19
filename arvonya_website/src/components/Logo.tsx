@@ -1,18 +1,15 @@
-export function Logo({ className = "", size = "text-2xl" }: { className?: string; size?: string }) {
-  const textSizeMap: Record<string, { text: string; icon: string }> = {
-    "text-sm": { text: "text-sm", icon: "h-6 w-6" },
-    "text-base": { text: "text-base", icon: "h-7 w-7" },
-    "text-lg": { text: "text-lg", icon: "h-8 w-8" },
-    "text-xl": { text: "text-xl", icon: "h-9 w-9" },
-    "text-2xl": { text: "text-xl", icon: "h-10 w-10" },
-    "text-3xl": { text: "text-2xl", icon: "h-12 w-12" },
-    "text-6xl": { text: "text-5xl", icon: "h-24 w-24" },
-    "text-7xl": { text: "text-6xl", icon: "h-28 w-28" },
+export function Logo({ className = "", size = "text-base" }: { className?: string; size?: string }) {
+  const sizes = {
+    "text-sm": { icon: "h-6 w-6", text: "text-xs" },
+    "text-base": { icon: "h-7 w-7", text: "text-xs" },
+    "text-lg": { icon: "h-7 w-7", text: "text-sm" },
+    "text-xl": { icon: "h-8 w-8", text: "text-sm" },
+    "text-2xl": { icon: "h-7 w-7", text: "text-xs" },
   };
-  const s = textSizeMap[size] ?? { text: "text-xl", icon: "h-9 w-9" };
+  const s = sizes[size] ?? sizes["text-base"];
 
   return (
-    <div className={`flex flex-row items-center gap-3 ${className}`}>
+    <div className={`flex flex-row items-center gap-2 ${className}`}>
       <svg
         className={s.icon}
         viewBox="0 0 100 100"
@@ -22,24 +19,23 @@ export function Logo({ className = "", size = "text-2xl" }: { className?: string
       >
         <defs>
           <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#22c55e" />
-            <stop offset="100%" stop-color="#f97316" />
+            <stop offset="0%" stop-color="#f97316" />
+            <stop offset="100%" stop-color="#22c55e" />
           </linearGradient>
         </defs>
         <path
           fill="url(#logoGrad)"
-          d="M25 85 L25 45 L35 45 L35 30 L45 30 L45 45 L55 45 L55 25 L65 25 L65 45 L75 45 L75 30 L85 30 L85 45 L85 85 Z"
+          d="M50 10c-5 0-9 2-9 7v12c0 3 2 6 5 8l-3 41c-1 2 0 4 2 5s4 1 5-2l3-37c1-3-1-6-2-9V17c0-5 4-7 9-7z"
         />
-        <rect x="30" y="50" width="40" height="35" fill="none" stroke="#1a1a1a" stroke-width="3" />
-        <rect x="35" y="55" width="10" height="25" fill="#e5e5e5" />
-        <rect x="55" y="55" width="10" height="25" fill="#e5e5e5" />
-        <rect x="47" y="55" width="6" height="12" fill="#e5e5e5" />
+        <rect x="42" y="35" width="16" height="12" rx="2" fill="#1a1a1a" />
+        <rect x="44" y="37" width="4" height="8" fill="#e5e5e5" />
+        <rect x="52" y="37" width="4" height="8" fill="#e5e5e5" />
       </svg>
-      <span className="flex flex-col leading-tight">
-        <span className={`font-black ${s.text}`} style={{ color: "#f97316" }}>
+      <span className="flex flex-col leading-[1.1]">
+        <span className={`font-bold ${s.text} tracking-wider uppercase`} style={{ color: "#f97316" }}>
           ARVONYA
         </span>
-        <span className={`font-black ${s.text}`} style={{ color: "#22c55e" }}>
+        <span className={`font-bold ${s.text} tracking-wider uppercase`} style={{ color: "#22c55e" }}>
           GRUP
         </span>
       </span>

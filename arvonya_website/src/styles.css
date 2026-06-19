@@ -193,7 +193,7 @@ iframe[src*="lovable.dev/badge"],
   }
 }
 .animate-aura {
+  width: 350px;
+  height: 350px;
   animation: aura-pulse 2.4s ease-in-out infinite;
-  content-visibility: auto;
-  contain-intrinsic-size: 12rem 12rem;
 }
