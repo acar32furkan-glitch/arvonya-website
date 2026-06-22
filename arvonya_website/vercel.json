@@ -1,6 +1,8 @@
 {
   "buildCommand": "npm install && vite build",
   "outputDirectory": "dist",
+  "framework": "vite",
+  "node": "20.x",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
