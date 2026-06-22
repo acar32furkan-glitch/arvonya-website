@@ -34,7 +34,7 @@ export function ListingCard({
     : [];
   const [active, setActive] = useState(0);
   const fav = favorites.includes(item.id);
-  const whatsappText = `Merhaba, ${item.title} ilanı hakkında bilgi almak istiyorum. https://arvonya-website.vercel.app/listing/${item.id}`;
+  const whatsappText = `Merhaba, ${item.title} ilanı hakkında bilgi almak istiyorum. https://arvonya-site.vercel.app/listing/${item.id}`;
   const whatsappHref = `https://wa.me/905382402246?text=${encodeURIComponent(whatsappText)}`;
 
   return (
@@ -110,15 +110,16 @@ export function ListingCard({
                   ? "rgba(184,58,18,0.25)"
                   : "rgba(48,208,104,0.25)";
               return (
-                <button
-                  key={i}
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  aria-label={`${item.title} görsel ${i + 1}`}
-                  aria-pressed={active === i}
-                  className="relative aspect-square lg:aspect-auto overflow-hidden rounded-xl transition-all duration-300"
-                  style={active === i ? { boxShadow: `0 0 22px ${aura}` } : undefined}
-                >
+<button
+                   key={i}
+                   onTouchStart={() => setActive(i)}
+                   onMouseEnter={() => setActive(i)}
+                   onClick={() => setActive(i)}
+                   aria-label={`${item.title} görsel ${i + 1}`}
+                   aria-pressed={active === i}
+                   className="relative aspect-square lg:aspect-auto overflow-hidden rounded-xl transition-all duration-300"
+                   style={active === i ? { boxShadow: `0 0 22px ${aura}` } : undefined}
+                 >
                   {hasImages ? (
                     <ResponsivePicture
                       src={src}

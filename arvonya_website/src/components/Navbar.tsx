@@ -83,12 +83,12 @@ export function Navbar() {
                 </button>
               );
             })}
-            <Link
-              to="/iletisim"
+            <a
+              href="/iletisim"
               className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
             >
               İletişim
-            </Link>
+            </a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -214,13 +214,14 @@ export function Navbar() {
                     </button>
                   );
                 })}
-                <Link
-                  to="/iletisim"
-                  onClick={() => setMobileOpen(false)}
-                  className="block w-full px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
-                >
-                  İletişim
-                </Link>
+<a
+                   href="/iletisim"
+                   onTouchEnd={() => setMobileOpen(false)}
+                   onClick={() => setMobileOpen(false)}
+                   className="block w-full px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
+                 >
+                   İletişim
+                 </a>
                 {/* Lang + Currency in mobile */}
                 <div className="pt-3 border-t border-border/40 flex items-center justify-between">
                   <div className="flex gap-1">

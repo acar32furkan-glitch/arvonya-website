@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, Check, ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useStore, tr, type ListingType, type View } from "@/lib/store";
 import { ResponsivePicture } from "@/components/ResponsivePicture";
 
@@ -68,24 +68,22 @@ export function Hero() {
 
         <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
 
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute right-0 top-0 hidden h-full w-[48%] lg:block"
-          style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-        >
-          <ResponsivePicture
-            src="/assets/hero-estate-o0EkCtrk.webp"
-            alt="Arvonya Emlak"
-            className="h-full w-full object-cover object-center"
-            sizes="(min-width: 1024px) 48vw, 100vw"
-            width={1920}
-            height={832}
-            priority
-            loading="eager"
-            fetchPriority="high"
-          />
+<motion.div
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
+            style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          >
+            <img
+              src="/assets/hero-estate-o0EkCtrk-1920.webp"
+              alt="Arvonya Emlak"
+              className="h-full w-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+              width={1920}
+              height={832}
+            />
           <div
             className="absolute inset-0"
             style={{
@@ -106,17 +104,17 @@ export function Hero() {
             Gayrimenkul · Otomotiv · Güven
           </motion.p>
 
-          <h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]">
-            <span className="block">
-              <Word text="Isparta'nın" delay={0.65} />
-            </span>
-            <span className="block font-bold">
-              <Word text="Güvenilir" delay={0.78} color="var(--brand-green)" />
-            </span>
-            <span className="block">
-              <Word text="Emlak" delay={0.9} /> <Word text="Adresi." delay={0.98} />
-            </span>
-          </h1>
+<h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]" id="hero-heading">
+             <span className="block">
+               <Word text="Isparta'nın" delay={0.65} />
+             </span>
+             <span className="block font-bold">
+               <Word text="Güvenilir" delay={0.78} color="var(--brand-green)" />
+             </span>
+             <span className="block">
+               <Word text="Emlak" delay={0.9} /> <Word text="Adresi." delay={0.98} />
+             </span>
+           </h1>
 
           <motion.p
             initial={{ opacity: 0 }}
@@ -127,60 +125,10 @@ export function Hero() {
             Satılık ve kiralık konut, arsa ve ticari portföy — tek çatı altında.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.25, duration: 0.6 }}
-            className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-neutral-500"
-          >
-            <span className="flex items-center gap-1.5">
-              <Check className="h-3 w-3 text-brand-green" />
-              {tr("Yerel Uzmanlık", lang)}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Check className="h-3 w-3 text-brand-green" />
-              {tr("Şeffaf Süreç", lang)}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Check className="h-3 w-3 text-brand-green" />
-              {tr("Hızlı Dönüş", lang)}
-            </span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.35, duration: 0.6 }}
-            className="mt-9 flex w-fit gap-1.5 rounded-full border border-neutral-200 bg-white/70 p-1.5 shadow-sm backdrop-blur-sm"
-          >
-            {tabs.map((t) => {
-              const active = listingTypeFilter === t.id;
-              const color = t.id === "sale" ? "var(--brand-green)" : "var(--brand-orange-dark)";
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setListingTypeFilter(t.id)}
-                  className="relative px-6 py-2.5 text-sm font-semibold transition-colors"
-                  style={{ color: active ? "#fff" : "#1A1A1A" }}
-                >
-                  {active && (
-                    <motion.div
-                      layoutId="hero-tab"
-                      className="absolute inset-0 -z-10 rounded-full"
-                      style={{ backgroundColor: color }}
-                      transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                    />
-                  )}
-                  {t.label}
-                </button>
-              );
-            })}
-          </motion.div>
-
           <motion.button
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.55, duration: 0.6 }}
+            transition={{ delay: 1.25, duration: 0.6 }}
             onClick={() => {
               document.getElementById("sector-band")?.scrollIntoView({ behavior: "smooth" });
             }}
@@ -194,8 +142,8 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.1 }}
-            className="mt-16 flex flex-col gap-1 text-neutral-400"
+            transition={{ delay: 1.65 }}
+            className="mt-10 flex flex-col gap-1 text-neutral-400"
           >
             <motion.div
               animate={{ y: [0, 5, 0] }}

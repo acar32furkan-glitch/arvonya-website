@@ -21,7 +21,11 @@ export function IntroAnimation() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-gradient-to-br from-brand-green-soft/60 via-brand-orange-soft/30 to-brand-green-soft/60"
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          style={{
+            background: "linear-gradient(135deg, rgba(48,208,104,0.85) 0%, rgba(255,104,8,0.65) 50%, rgba(48,208,104,0.85) 100%)",
+          }}
+          aria-label="Arvonya'e hoş geldiniz"
         >
           <motion.div
             initial={{ scale: 1.8, opacity: 0 }}

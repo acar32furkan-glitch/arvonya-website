@@ -14,26 +14,20 @@ type ResponsivePictureProps = Omit<
   priority?: boolean;
 };
 
-const FALLBACK_WIDTHS = [480, 768, 1024, 1440, 1920];
+const WIDTHS = [480, 768, 1024, 1440, 1920] as const;
 
 function variantSrc(src: string, extension: "webp" | "avif", width: number) {
-  return src.replace(/\.[^.]+$/, `-${width}.${extension}`);
+  const withoutExt = src.replace(/\.[^.]+$/, "");
+  return `${withoutExt}-${width}.${extension}`;
 }
 
-function buildFallbackSrcSet(src: string, extension: "webp" | "avif") {
-  return FALLBACK_WIDTHS.map((width) => `${variantSrc(src, extension, width)} ${width}w`).join(
-    ", ",
-  );
-}
-
-function variantsFor() {
-  return [];
-}
-
-function srcSetFor(src: string, extension: "webp" | "avif") {
-  const variants = variantsFor(src);
-  if (variants.length === 0) return buildFallbackSrcSet(src, extension);
-  return variants.map((v) => `${v[extension]} ${v.width}w`).join(", ");
+function buildSrcSet(src: string, extension: "webp" | "avif") {
+  const candidates: string[] = [];
+  for (const w of WIDTHS) {
+    candidates.push(`${variantSrc(src, extension, w)} ${w}w`);
+  }
+  candidates.push(`${src} 1w`);
+  return candidates.join(", ");
 }
 
 export function ResponsivePicture({
@@ -65,13 +59,11 @@ export function ResponsivePicture({
 
   return (
     <picture>
-      <source type="image/avif" srcSet={srcSetFor(src, "avif")} sizes={sizes} />
-      <source type="image/webp" srcSet={srcSetFor(src, "webp")} sizes={sizes} />
+      <source type="image/avif" srcSet={buildSrcSet(src, "avif")} sizes={sizes} />
+      <source type="image/webp" srcSet={buildSrcSet(src, "webp")} sizes={sizes} />
       <img
         {...imgProps}
         src={src}
-        srcSet={srcSetFor(src, "webp")}
-        sizes={sizes}
         alt={alt}
         className={className}
         width={width}

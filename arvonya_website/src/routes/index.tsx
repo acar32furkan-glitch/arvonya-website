@@ -22,21 +22,22 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri. Arvonya Group ile değer katan stratejik çözümler.",
+          "Emlak, otomotiv ve dış ticaret hizmetleri. Arvonya Group ile değer katan stratejik çözümler.",
       },
       { name: "author", content: "Arvonya Grup" },
+      { rel: "canonical", href: "https://arvonya-site.vercel.app/" },
       { property: "og:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
       {
         property: "og:description",
-        content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri.",
+        content: "Emlak, otomotiv ve dış ticaret hizmetleri.",
       },
       { property: "og:image", content: "https://arvonya-site.vercel.app/assets/logo-480.webp" },
-      { property: "og:url", content: "https://arvonya-site.vercel.app" },
+      { property: "og:url", content: "https://arvonya-site.vercel.app/" },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "Arvonya Grup — Kurumsal Güven, Kalıcı İstikrar" },
       {
         name: "twitter:description",
-        content: "Emlak, otomotiv, dış ticaret ve profesyonel tercüme hizmetleri.",
+        content: "Emlak, otomotiv ve dış ticaret hizmetleri.",
       },
       { name: "twitter:image", content: "https://arvonya-site.vercel.app/assets/logo-480.webp" },
       { name: "twitter:card", content: "summary_large_image" },
