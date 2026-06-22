@@ -64,10 +64,15 @@
   --ring: #1a1a1a;
 
   /* Arvonya brand — exact corporate hex */
-  --brand-orange: #f97316;
-  --brand-green: #22c55e;
-  --brand-orange-soft: rgba(249, 115, 22, 0.12);
-  --brand-green-soft: rgba(34, 197, 94, 0.12);
+  --brand-orange: #ff6808;
+  --brand-green: #30d068;
+  --brand-orange-dark: #b83a12;
+  --brand-green-dark: #137a3a;
+  --brand-orange-soft: rgba(255, 104, 8, 0.12);
+  --brand-green-soft: rgba(48, 208, 104, 0.12);
+  --brand-orange-soft-strong: rgba(255, 104, 8, 0.2);
+  --brand-green-soft-strong: rgba(48, 208, 104, 0.2);
+  --brand-green-light: #4ade80;
 }
 
 @layer base {
@@ -91,8 +96,8 @@
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
   border-radius: 9999px;
-  border: 2px solid #f97316;
-  color: #f97316;
+  border: 2px solid var(--brand-orange);
+  color: var(--brand-orange);
   background: transparent;
   font-weight: 600;
   font-size: 0.875rem;
@@ -112,8 +117,8 @@
   gap: 0.5rem;
   padding: 0.625rem 1.25rem;
   border-radius: 9999px;
-  border: 2px solid #22c55e;
-  color: #22c55e;
+  border: 2px solid var(--brand-green);
+  color: var(--brand-green);
   background: transparent;
   font-weight: 600;
   font-size: 0.875rem;
@@ -124,11 +129,11 @@
 }
 
 .btn-outline-orange:hover {
-  background: #f97316;
+  background: var(--brand-orange);
   color: #fff;
 }
 .btn-outline-green:hover {
-  background: #22c55e;
+  background: var(--brand-green);
   color: #fff;
 }
 .btn-outline-red {

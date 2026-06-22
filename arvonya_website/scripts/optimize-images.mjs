@@ -6,7 +6,7 @@ import sharp from "sharp";
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, "public");
 const OUTPUT_MANIFEST = path.join(ROOT, "src", "assets", "image-metadata.json");
-const WIDTHS = [480, 768, 1024];
+const WIDTHS = [480, 768, 1024, 1440, 1920];
 const IMAGE_RE = /\.(?:jpe?g|png)$/i;
 
 const SOURCE_DIRS = [
@@ -91,9 +91,17 @@ async function optimizeFile(file, dir, publicPath) {
     const webpPath = outputPathFor(original, targetWidth, "webp");
     const avifPath = outputPathFor(original, targetWidth, "avif");
 
-    await ensureDir(path.dirname(webpPath));
-    await pipeline.clone().webp({ quality: 82, effort: 4 }).toFile(webpPath);
-    await pipeline.clone().avif({ quality: 52, effort: 4 }).toFile(avifPath);
+    const webpExists = await imageExists(webpPath);
+    const avifExists = await imageExists(avifPath);
+
+    if (!webpExists) {
+      await ensureDir(path.dirname(webpPath));
+      await pipeline.clone().webp({ quality: 82, effort: 4 }).toFile(webpPath);
+    }
+    if (!avifExists) {
+      await ensureDir(path.dirname(avifPath));
+      await pipeline.clone().avif({ quality: 52, effort: 4 }).toFile(avifPath);
+    }
 
     variants.push({
       width: targetWidth,

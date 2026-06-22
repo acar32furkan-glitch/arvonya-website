@@ -28,11 +28,11 @@ export function Footer() {
             </h3>
             <div className="space-y-3 text-sm text-neutral-400 leading-relaxed">
               <p className="flex gap-2 items-start">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-[#B83A12]" />
+                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-[var(--brand-orange-dark)]" />
                 <span>{COMPANY.address}</span>
               </p>
               <p className="flex gap-2 items-center">
-                <Phone className="h-4 w-4 text-[#2f4553]" />
+                <Phone className="h-4 w-4 text-[var(--brand-green)]" />
                 <a href={`tel:+${COMPANY.phoneIntl}`} className="text-white hover:underline">
                   {COMPANY.phone}
                 </a>
@@ -52,7 +52,7 @@ export function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="p-2.5 rounded-full border-2 border-white/15 hover:border-[#B83A12] hover:text-[#B83A12] transition"
+                  className="p-2.5 rounded-full border-2 border-white/15 hover:border-[var(--brand-orange-dark)] hover:text-[var(--brand-orange-dark)] transition"
                   aria-label={`${label} hesabına git`}
                 >
                   <Ic className="h-4 w-4" />
@@ -67,12 +67,12 @@ export function Footer() {
               © {new Date().getFullYear()} Arvonya Group. {tr("Tüm hakları saklıdır.", lang)}
             </p>
             <div className="flex gap-5">
-              <Link to="/kvkk" className="hover:text-[#B83A12] transition">
+              <Link to="/kvkk" className="hover:text-[var(--brand-orange-dark)] transition">
                 KVKK
               </Link>
               <button
                 onClick={() => setModal("privacy")}
-                className="hover:text-[#B83A12] transition"
+                className="hover:text-[var(--brand-orange-dark)] transition"
               >
                 {tr("Gizlilik Politikası", lang)}
               </button>

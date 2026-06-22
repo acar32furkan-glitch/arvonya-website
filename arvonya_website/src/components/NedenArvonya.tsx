@@ -6,13 +6,13 @@ const items = [
     n: "01",
     title: "Çok Sektörlü Güç",
     desc: "Emlak, otomotiv, dış ticaret ve tercüme alanlarında entegre uzmanlık.",
-    color: "#2f4553",
+    color: "#30d068",
   },
   {
     n: "02",
     title: "Kalıcı İstikrar",
     desc: "Kurumsal disiplin ve şeffaf süreçlerle uzun vadeli değer üretiyoruz.",
-    color: "#B83A12",
+    color: "var(--brand-orange-dark)",
   },
   {
     n: "03",

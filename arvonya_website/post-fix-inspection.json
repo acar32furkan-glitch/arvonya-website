@@ -1,0 +1,77 @@
+{
+  "logo": {
+    "currentSrc": "https://arvonya-site.vercel.app/assets/logo-480.avif",
+    "src": "https://arvonya-site.vercel.app/assets/logo-480.webp",
+    "sample": {
+      "natural": "480x379",
+      "display": "80x63",
+      "samples": 58660,
+      "top": [
+        {
+          "rgb": "256,104,8,255",
+          "count": 12221,
+          "pct": "20.83"
+        },
+        {
+          "rgb": "0,0,0,255",
+          "count": 11494,
+          "pct": "19.59"
+        },
+        {
+          "rgb": "48,208,104,255",
+          "count": 4937,
+          "pct": "8.42"
+        },
+        {
+          "rgb": "232,104,16,255",
+          "count": 1900,
+          "pct": "3.24"
+        },
+        {
+          "rgb": "32,176,80,255",
+          "count": 1274,
+          "pct": "2.17"
+        },
+        {
+          "rgb": "0,0,0,254",
+          "count": 1049,
+          "pct": "1.79"
+        },
+        {
+          "rgb": "248,96,8,255",
+          "count": 971,
+          "pct": "1.66"
+        },
+        {
+          "rgb": "48,208,96,255",
+          "count": 882,
+          "pct": "1.50"
+        }
+      ]
+    }
+  },
+  "footerLogo": null,
+  "favicon": {
+    "href": "https://arvonya-site.vercel.app/favicon.svg",
+    "type": "image/svg+xml",
+    "sizes": {}
+  },
+  "guvenilir": [
+    {
+      "text": "Güvenilir",
+      "color": "rgb(26, 26, 26)",
+      "className": "block font-bold"
+    },
+    {
+      "text": "Güvenilir",
+      "color": "rgb(34, 197, 94)",
+      "className": "inline-block"
+    }
+  ],
+  "navGreen": null,
+  "saleTab": {
+    "text": "Satılık",
+    "color": "rgb(255, 255, 255)",
+    "bg": "rgba(0, 0, 0, 0)"
+  }
+}

@@ -18,6 +18,11 @@
         "width": 1024,
         "webp": "/assets/car-1-BNcuS9Yg-1024.webp",
         "avif": "/assets/car-1-BNcuS9Yg-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/car-1-BNcuS9Yg-1440.webp",
+        "avif": "/assets/car-1-BNcuS9Yg-1440.avif"
       }
     ]
   },
@@ -62,6 +67,11 @@
         "width": 1024,
         "webp": "/assets/car-2-_ZILX4VY-1024.webp",
         "avif": "/assets/car-2-_ZILX4VY-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/car-2-_ZILX4VY-1440.webp",
+        "avif": "/assets/car-2-_ZILX4VY-1440.avif"
       }
     ]
   },
@@ -106,6 +116,16 @@
         "width": 1024,
         "webp": "/assets/hero-estate-o0EkCtrk-1024.webp",
         "avif": "/assets/hero-estate-o0EkCtrk-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/hero-estate-o0EkCtrk-1440.webp",
+        "avif": "/assets/hero-estate-o0EkCtrk-1440.avif"
+      },
+      {
+        "width": 1920,
+        "webp": "/assets/hero-estate-o0EkCtrk-1920.webp",
+        "avif": "/assets/hero-estate-o0EkCtrk-1920.avif"
       }
     ]
   },
@@ -128,6 +148,11 @@
         "width": 1024,
         "webp": "/assets/hero-estate-1024.webp",
         "avif": "/assets/hero-estate-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/hero-estate-1440.webp",
+        "avif": "/assets/hero-estate-1440.avif"
       }
     ]
   },
@@ -624,6 +649,16 @@
         "width": 1024,
         "webp": "/assets/p4-orchard-1024.webp",
         "avif": "/assets/p4-orchard-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/p4-orchard-1440.webp",
+        "avif": "/assets/p4-orchard-1440.avif"
+      },
+      {
+        "width": 1920,
+        "webp": "/assets/p4-orchard-1920.webp",
+        "avif": "/assets/p4-orchard-1920.avif"
       }
     ]
   },
@@ -736,6 +771,11 @@
         "width": 1024,
         "webp": "/assets/property-1-CBDHeObv-1024.webp",
         "avif": "/assets/property-1-CBDHeObv-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/property-1-CBDHeObv-1440.webp",
+        "avif": "/assets/property-1-CBDHeObv-1440.avif"
       }
     ]
   },
@@ -780,6 +820,11 @@
         "width": 1024,
         "webp": "/assets/property-2-BRtGESfo-1024.webp",
         "avif": "/assets/property-2-BRtGESfo-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/assets/property-2-BRtGESfo-1440.webp",
+        "avif": "/assets/property-2-BRtGESfo-1440.avif"
       }
     ]
   },
@@ -1160,6 +1205,16 @@
         "width": 1024,
         "webp": "/logo_preview-1024.webp",
         "avif": "/logo_preview-1024.avif"
+      },
+      {
+        "width": 1440,
+        "webp": "/logo_preview-1440.webp",
+        "avif": "/logo_preview-1440.avif"
+      },
+      {
+        "width": 1920,
+        "webp": "/logo_preview-1920.webp",
+        "avif": "/logo_preview-1920.avif"
       }
     ]
   },

@@ -70,7 +70,10 @@ export function ListingCard({
           {item.kind === "property" && (
             <div
               className="absolute top-4 left-24 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-white"
-              style={{ backgroundColor: item.listingType === "rent" ? "#B83A12" : "#2f4553" }}
+              style={{
+                backgroundColor:
+                  item.listingType === "rent" ? "var(--brand-orange-dark)" : "var(--brand-green)",
+              }}
             >
               {item.listingType === "rent" ? "Kiralık" : "Satılık"}
             </div>
@@ -85,7 +88,10 @@ export function ListingCard({
           >
             <Heart
               className="h-4 w-4"
-              style={{ color: fav ? "#B83A12" : "#fff", fill: fav ? "#B83A12" : "transparent" }}
+              style={{
+                color: fav ? "var(--brand-orange-dark)" : "#fff",
+                fill: fav ? "var(--brand-orange-dark)" : "transparent",
+              }}
             />
           </button>
           <Link
@@ -102,7 +108,7 @@ export function ListingCard({
               const aura =
                 item.kind === "property" && item.listingType === "rent"
                   ? "rgba(184,58,18,0.25)"
-                  : "rgba(19,122,58,0.25)";
+                  : "rgba(48,208,104,0.25)";
               return (
                 <button
                   key={i}
@@ -207,7 +213,7 @@ export function ListingCard({
               )}
             </div>
           </div>
-          <div className="text-2xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-[#B83A12]">
+          <div className="text-2xl md:text-3xl font-bold tracking-tight whitespace-nowrap text-[var(--brand-orange-dark)]">
             {formatPrice(item.priceTL, currency)}
             {item.kind === "property" && item.listingType === "rent" && (
               <span className="text-sm font-normal text-muted-foreground"> / ay</span>
@@ -221,7 +227,7 @@ export function ListingCard({
             <button
               type="button"
               onClick={() => toggleFavorite(item.id)}
-              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[#B83A12]"
+              className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-[var(--brand-orange-dark)]"
               aria-label={
                 fav ? `${item.title} favorilerden çıkar` : `${item.title} favorilere ekle`
               }
@@ -229,8 +235,8 @@ export function ListingCard({
               <Heart
                 className="h-3.5 w-3.5"
                 style={{
-                  color: fav ? "#B83A12" : "currentColor",
-                  fill: fav ? "#B83A12" : "transparent",
+                  color: fav ? "var(--brand-orange-dark)" : "currentColor",
+                  fill: fav ? "var(--brand-orange-dark)" : "transparent",
                 }}
               />
               <span>{fav ? "Favorilerde" : "Favorilere Ekle"}</span>

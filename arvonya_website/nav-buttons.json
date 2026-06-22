@@ -1,0 +1,122 @@
+[
+  {
+    "text": "Kurumsal",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 328.921875,
+      "y": 14,
+      "width": 91.484375,
+      "height": 36,
+      "top": 14,
+      "right": 420.40625,
+      "bottom": 50,
+      "left": 328.921875
+    }
+  },
+  {
+    "text": "Gayrimenkul",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 424.40625,
+      "y": 14,
+      "width": 112.21875,
+      "height": 36,
+      "top": 14,
+      "right": 536.625,
+      "bottom": 50,
+      "left": 424.40625
+    }
+  },
+  {
+    "text": "Otomotiv",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 540.625,
+      "y": 14,
+      "width": 92.5,
+      "height": 36,
+      "top": 14,
+      "right": 633.125,
+      "bottom": 50,
+      "left": 540.625
+    }
+  },
+  {
+    "text": "Dış Ticaret",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 637.125,
+      "y": 14,
+      "width": 98.421875,
+      "height": 36,
+      "top": 14,
+      "right": 735.546875,
+      "bottom": 50,
+      "left": 637.125
+    }
+  },
+  {
+    "text": "Tercüme",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 739.546875,
+      "y": 14,
+      "width": 85.453125,
+      "height": 36,
+      "top": 14,
+      "right": 825,
+      "bottom": 50,
+      "left": 739.546875
+    }
+  },
+  {
+    "text": "",
+    "color": "rgb(26, 26, 26)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 1131.90625,
+      "y": 14,
+      "width": 36,
+      "height": 36,
+      "top": 14,
+      "right": 1167.90625,
+      "bottom": 50,
+      "left": 1131.90625
+    }
+  },
+  {
+    "text": "TR · TL",
+    "color": "rgb(26, 26, 26)",
+    "bg": "oklab(0.999994 0.0000455677 0.0000200868 / 0.6)",
+    "rect": {
+      "x": 1175.90625,
+      "y": 17,
+      "width": 80.09375,
+      "height": 30,
+      "top": 17,
+      "right": 1256,
+      "bottom": 47,
+      "left": 1175.90625
+    }
+  },
+  {
+    "text": "",
+    "color": "rgb(26, 26, 26)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    }
+  }
+]

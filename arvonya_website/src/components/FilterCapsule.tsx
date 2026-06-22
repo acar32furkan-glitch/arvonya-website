@@ -46,7 +46,7 @@ export function FilterCapsule() {
           <SlidersHorizontal className="h-4 w-4" />
           Filtrele
           {activeFilters > 0 && (
-            <span className="h-5 w-5 rounded-full bg-[#B83A12] text-white text-[10px] font-bold flex items-center justify-center">
+            <span className="h-5 w-5 rounded-full bg-[var(--brand-orange-dark)] text-white text-[10px] font-bold flex items-center justify-center">
               {activeFilters}
             </span>
           )}
@@ -74,7 +74,10 @@ export function FilterCapsule() {
                 <h2 className="text-xl font-semibold">Filtreler</h2>
                 <div className="flex gap-2">
                   {activeFilters > 0 && (
-                    <button onClick={clearAll} className="text-xs text-[#B83A12] hover:underline">
+                    <button
+                      onClick={clearAll}
+                      className="text-xs text-[var(--brand-orange-dark)] hover:underline"
+                    >
                       Temizle ({activeFilters})
                     </button>
                   )}

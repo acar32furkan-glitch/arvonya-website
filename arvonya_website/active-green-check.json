@@ -1,0 +1,27 @@
+[
+  {
+    "text": "Kurumsal",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "text": "Gayrimenkul",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "oklab(0 0 0 / 0.06)"
+  },
+  {
+    "text": "Otomotiv",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "text": "Dış Ticaret",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+    "text": "Tercüme",
+    "color": "rgba(26, 26, 26, 0.7)",
+    "bg": "rgba(0, 0, 0, 0)"
+  }
+]

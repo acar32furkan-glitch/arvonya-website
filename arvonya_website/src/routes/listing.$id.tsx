@@ -170,7 +170,7 @@ export const Route = createFileRoute("/listing/$id")({
 
     const pageTitle = `${listing.title} — Arvonya Grup`;
     const ogDescription = buildOgDescription(listing);
-    const firstImage = absoluteImageUrl(listing.images?.[0] ?? `${SITE_URL}/logo_preview.png`);
+    const firstImage = absoluteImageUrl(listing.images?.[0] ?? `${SITE_URL}/assets/logo-480.webp`);
     const pageUrl = `${SITE_URL}/listing/${listing.id}`;
 
     return {

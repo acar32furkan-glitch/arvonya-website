@@ -14,7 +14,7 @@ type ResponsivePictureProps = Omit<
   priority?: boolean;
 };
 
-const FALLBACK_WIDTHS = [480, 768, 1024];
+const FALLBACK_WIDTHS = [480, 768, 1024, 1440, 1920];
 
 function variantSrc(src: string, extension: "webp" | "avif", width: number) {
   return src.replace(/\.[^.]+$/, `-${width}.${extension}`);

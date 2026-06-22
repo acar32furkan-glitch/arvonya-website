@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { useStore, tr, type ListingType, type View } from "@/lib/store";
 import { ResponsivePicture } from "@/components/ResponsivePicture";
 
@@ -66,7 +66,7 @@ export function Hero() {
         <GrainOverlay />
         <DotGrid />
 
-        <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[#2f4553]/10 blur-[120px]" />
+        <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
 
         <motion.div
           initial={{ opacity: 0, x: 80 }}
@@ -111,7 +111,7 @@ export function Hero() {
               <Word text="Isparta'nın" delay={0.65} />
             </span>
             <span className="block font-bold">
-              <Word text="Güvenilir" delay={0.78} color="#2f4553" />
+              <Word text="Güvenilir" delay={0.78} color="var(--brand-green)" />
             </span>
             <span className="block">
               <Word text="Emlak" delay={0.9} /> <Word text="Adresi." delay={0.98} />
@@ -130,12 +130,32 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.25, duration: 0.6 }}
+            className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-neutral-500"
+          >
+            <span className="flex items-center gap-1.5">
+              <Check className="h-3 w-3 text-brand-green" />
+              {tr("Yerel Uzmanlık", lang)}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Check className="h-3 w-3 text-brand-green" />
+              {tr("Şeffaf Süreç", lang)}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Check className="h-3 w-3 text-brand-green" />
+              {tr("Hızlı Dönüş", lang)}
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.35, duration: 0.6 }}
             className="mt-9 flex w-fit gap-1.5 rounded-full border border-neutral-200 bg-white/70 p-1.5 shadow-sm backdrop-blur-sm"
           >
             {tabs.map((t) => {
               const active = listingTypeFilter === t.id;
-              const color = t.id === "sale" ? "#2f4553" : "#B83A12";
+              const color = t.id === "sale" ? "var(--brand-green)" : "var(--brand-orange-dark)";
               return (
                 <button
                   key={t.id}
@@ -165,7 +185,7 @@ export function Hero() {
               document.getElementById("sector-band")?.scrollIntoView({ behavior: "smooth" });
             }}
             className="mt-6 flex w-fit items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white shadow-lg transition-opacity hover:opacity-90 active:scale-[0.98]"
-            style={{ backgroundColor: "#B83A12" }}
+            style={{ backgroundColor: "var(--brand-orange-dark)" }}
           >
             İlanları Keşfet
             <ArrowUpRight className="h-4 w-4" />
@@ -210,14 +230,14 @@ function SectorBand() {
       label: "Gayrimenkul",
       sub: "Satılık · Kiralık · Arsa",
       img: "/assets/property-1-CBDHeObv.webp",
-      accent: "#2f4553",
+      accent: "var(--brand-green)",
     },
     {
       id: "otomotiv",
       label: "Otomotiv",
       sub: "Sıfır & İkinci El Araçlar",
       img: "/assets/car-1-BNcuS9Yg.webp",
-      accent: "#B83A12",
+      accent: "var(--brand-orange-dark)",
     },
   ];
 

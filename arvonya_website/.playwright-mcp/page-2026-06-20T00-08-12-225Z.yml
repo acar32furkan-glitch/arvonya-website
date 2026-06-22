@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+    - banner [ref=e2]:
+        - link "PageSpeed Insights logo PageSpeed Insights" [ref=e3] [cursor=pointer]:
+            - /url: ./
+            - img "PageSpeed Insights logo" [ref=e4]
+            - generic [ref=e5]: PageSpeed Insights
+        - generic [ref=e6]:
+            - button "Bağlantıyı Kopyala" [ref=e8]:
+                - img [ref=e11]
+                - generic [ref=e14]: Bağlantıyı Kopyala
+            - generic [ref=e16]:
+                - generic [ref=e18]: Dokümanlar
+                - link "Dokümanlar" [ref=e19] [cursor=pointer]:
+                    - /url: https://developers.google.com/speed/docs/insights/v5/about
+    - generic [ref=e26]:
+        - generic [ref=e27]:
+            - generic [ref=e28]: Bu site, hizmetlerini sunmak ve trafiği analiz etmek için Google çerezlerinden yararlanıyor.
+            - generic [ref=e29]:
+                - generic [ref=e31]:
+                    - generic [ref=e33]: Daha Fazla Bilgi.
+                    - link "Daha Fazla Bilgi." [ref=e34] [cursor=pointer]:
+                        - /url: https://policies.google.com/technologies/cookies
+                - button "Tamam, Anladım." [ref=e36]:
+                    - generic [ref=e39]: Tamam, Anladım.
+        - generic [ref=e41]:
+            - generic [ref=e42]: Analiz çalışıyor
+            - generic [ref=e43]:
+                - generic [ref=e44]: data loading
+                - progressbar [ref=e45]
+    - contentinfo [ref=e52]:
+        - generic [ref=e53]:
+            - generic [ref=e54]:
+                - generic [ref=e55]:
+                    - generic [ref=e56]: PageSpeed Insights hakkında daha fazla bilgi
+                    - link "Yenilikler" [ref=e58] [cursor=pointer]:
+                        - /url: https://developers.google.com/speed/docs/insights/release_notes
+                    - link "Dokümanlar" [ref=e60] [cursor=pointer]:
+                        - /url: https://developers.google.com/speed/docs/insights/v5/about
+                    - link "Web Performansı hakkında bilgi edinin" [ref=e62] [cursor=pointer]:
+                        - /url: https://developers.google.com/speed
+                    - link "Stack Overflow hakkında soru sorun" [ref=e64] [cursor=pointer]:
+                        - /url: https://stackoverflow.com/questions/tagged/pagespeed-insights
+                    - link "Posta listesi" [ref=e66] [cursor=pointer]:
+                        - /url: https://groups.google.com/g/pagespeed-insights-discuss
+                - generic [ref=e67]:
+                    - generic [ref=e68]: Alakalı İçerik
+                    - link "Güncellemeler" [ref=e70] [cursor=pointer]:
+                        - /url: https://developer.chrome.com/blog
+                    - link "Web'in Temelleri" [ref=e72] [cursor=pointer]:
+                        - /url: https://developers.google.com/focus/web-development
+                    - link "Örnek Olaylar" [ref=e74] [cursor=pointer]:
+                        - /url: https://web.dev/case-studies
+                    - link "Podcast'ler" [ref=e76] [cursor=pointer]:
+                        - /url: https://web.dev/shows
+                - generic [ref=e77]:
+                    - generic [ref=e78]: Bağlan
+                    - link "Twitter" [ref=e80] [cursor=pointer]:
+                        - /url: https://twitter.com/ChromiumDev
+                    - link "YouTube" [ref=e82] [cursor=pointer]:
+                        - /url: https://www.youtube.com/user/ChromeDevelopers
+            - generic [ref=e83]:
+                - link "Google Developers Logo" [ref=e84] [cursor=pointer]:
+                    - /url: https://developers.google.com/
+                    - img "Google Developers Logo" [ref=e85]
+                - link "Chrome" [ref=e86] [cursor=pointer]:
+                    - /url: https://developer.chrome.com/
+                - link "Firebase" [ref=e87] [cursor=pointer]:
+                    - /url: https://firebase.google.com/
+                - link "Tüm ürünler" [ref=e88] [cursor=pointer]:
+                    - /url: https://developers.google.com/products/
+            - generic [ref=e89]:
+                - link "Şartlar ve Gizlilik Politikası" [ref=e91] [cursor=pointer]:
+                    - /url: https://policies.google.com/
+                - generic [ref=e92]:
+                    - text: Ayrıntılı bilgi için
+                    - link "Google Developers Sitesi Politikaları" [ref=e93] [cursor=pointer]:
+                        - /url: https://developers.google.com/terms/site-policies
+                    - text: "'na bakın."

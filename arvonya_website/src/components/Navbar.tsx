@@ -42,7 +42,7 @@ export function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-4">
           <Link to="/" onClick={() => setView("gayrimenkul")}>
-            <Logo size="text-xl" />
+            <Logo size="text-lg" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -50,7 +50,11 @@ export function Navbar() {
               const active = view === n.id;
               const accent = ACCENTS[n.id];
               const accentColor =
-                accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
+                accent === "green"
+                  ? "var(--brand-green)"
+                  : accent === "orange"
+                    ? "var(--brand-orange-dark)"
+                    : "#1A1A1A";
               return (
                 <button
                   key={n.id}
@@ -69,9 +73,9 @@ export function Navbar() {
                       style={{
                         backgroundColor:
                           accent === "green"
-                            ? "rgba(47,69,83,0.12)"
+                            ? "var(--brand-green-soft)"
                             : accent === "orange"
-                              ? "rgba(184,58,18,0.12)"
+                              ? "var(--brand-orange-soft)"
                               : "rgba(26,26,26,0.06)",
                       }}
                     />
@@ -173,7 +177,11 @@ export function Navbar() {
                   const active = view === n.id;
                   const accent = ACCENTS[n.id];
                   const accentColor =
-                    accent === "green" ? "#2f4553" : accent === "orange" ? "#B83A12" : "#1A1A1A";
+                    accent === "green"
+                      ? "var(--brand-green)"
+                      : accent === "orange"
+                        ? "var(--brand-orange-dark)"
+                        : "#1A1A1A";
                   return (
                     <button
                       key={n.id}
@@ -186,9 +194,9 @@ export function Navbar() {
                         color: active ? accentColor : undefined,
                         backgroundColor: active
                           ? accent === "green"
-                            ? "rgba(47,69,83,0.08)"
+                            ? "var(--brand-green-soft)"
                             : accent === "orange"
-                              ? "rgba(184,58,18,0.08)"
+                              ? "var(--brand-orange-soft)"
                               : "rgba(26,26,26,0.04)"
                           : undefined,
                       }}

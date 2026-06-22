@@ -1,0 +1,29 @@
+{
+  "logo": {
+    "currentSrc": "https://arvonya-site.vercel.app/logo_preview-480.avif",
+    "src": "https://arvonya-site.vercel.app/logo_preview.png",
+    "natural": "479x379",
+    "display": "80x63",
+    "objectFit": "contain",
+    "parentClass": "inline-block shrink-0 h-[63px] w-[80px] ",
+    "parentStyle": null
+  },
+  "favicon": {
+    "href": "https://arvonya-site.vercel.app/logo_preview.png",
+    "type": "image/png",
+    "sizes": {}
+  },
+  "guvenilir": [
+    {
+      "text": "Güvenilir",
+      "color": "rgb(26, 26, 26)",
+      "className": "block font-bold"
+    },
+    {
+      "text": "Güvenilir",
+      "color": "rgb(47, 69, 83)",
+      "className": "inline-block"
+    }
+  ],
+  "nav": "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-transparent"
+}

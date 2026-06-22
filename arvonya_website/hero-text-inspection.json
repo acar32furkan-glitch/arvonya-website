@@ -1,0 +1,36 @@
+[
+  {
+    "text": "Güvenilir",
+    "className": "block font-bold",
+    "color": "rgb(26, 26, 26)",
+    "fontWeight": "700",
+    "fontFamily": "Inter, system-ui, -apple-system, sans-serif",
+    "rect": {
+      "x": 96,
+      "y": 228.59375,
+      "width": 512,
+      "height": 89.59375,
+      "top": 228.59375,
+      "right": 608,
+      "bottom": 318.1875,
+      "left": 96
+    }
+  },
+  {
+    "text": "Güvenilir",
+    "className": "inline-block",
+    "color": "rgb(47, 69, 83)",
+    "fontWeight": "700",
+    "fontFamily": "Inter, system-ui, -apple-system, sans-serif",
+    "rect": {
+      "x": 96,
+      "y": 228.59375,
+      "width": 321.578125,
+      "height": 89.59375,
+      "top": 228.59375,
+      "right": 417.578125,
+      "bottom": 318.1875,
+      "left": 96
+    }
+  }
+]

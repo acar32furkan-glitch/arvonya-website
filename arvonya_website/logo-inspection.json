@@ -1,0 +1,93 @@
+{
+  "imgExists": true,
+  "imgSrc": "https://arvonya-site.vercel.app/logo_preview-480.avif",
+  "naturalWidth": 479,
+  "naturalHeight": 379,
+  "displayWidth": 80,
+  "displayHeight": 63,
+  "computedObjectFit": "contain",
+  "faviconHref": "https://arvonya-site.vercel.app/logo_preview.png",
+  "faviconSizes": {},
+  "faviconType": "image/png",
+  "htmlPreloads": [
+    {
+      "rel": "preload",
+      "href": "https://arvonya-site.vercel.app/logo_preview-480.webp",
+      "as": "image",
+      "type": null,
+      "imageSrcSet": null,
+      "imageSizes": null
+    },
+    {
+      "rel": "preload",
+      "href": "https://arvonya-site.vercel.app/assets/hero-estate-o0EkCtrk-480.webp",
+      "as": "image",
+      "type": null,
+      "imageSrcSet": null,
+      "imageSizes": null
+    },
+    {
+      "rel": "icon",
+      "href": "https://arvonya-site.vercel.app/logo_preview.png",
+      "as": null,
+      "type": "image/png",
+      "imageSrcSet": null,
+      "imageSizes": null
+    }
+  ],
+  "logoCurrentSrc": "https://arvonya-site.vercel.app/logo_preview-480.avif",
+  "pixels": {
+    "totalOpaquePixels": 181541,
+    "nonWhiteSamples": 58922,
+    "topNonWhiteColors": [
+      {
+        "rgb": "256,96,0,255",
+        "count": 2959
+      },
+      {
+        "rgb": "0,0,0,255",
+        "count": 1378
+      },
+      {
+        "rgb": "256,96,16,255",
+        "count": 172
+      },
+      {
+        "rgb": "224,224,224,255",
+        "count": 72
+      },
+      {
+        "rgb": "80,32,0,255",
+        "count": 69
+      },
+      {
+        "rgb": "96,96,96,255",
+        "count": 40
+      },
+      {
+        "rgb": "192,80,0,255",
+        "count": 35
+      },
+      {
+        "rgb": "240,96,0,255",
+        "count": 26
+      },
+      {
+        "rgb": "16,16,16,255",
+        "count": 19
+      },
+      {
+        "rgb": "16,0,0,255",
+        "count": 19
+      },
+      {
+        "rgb": "240,96,16,255",
+        "count": 19
+      },
+      {
+        "rgb": "240,240,240,255",
+        "count": 16
+      }
+    ]
+  }
+}

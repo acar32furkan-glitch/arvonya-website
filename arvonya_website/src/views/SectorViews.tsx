@@ -75,15 +75,52 @@ export function OtomotivView() {
     <motion.section {...fade}>
       <div className="mx-auto max-w-7xl px-6 pt-32 pb-16">
         <header className="mb-12 md:mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-brand-orange mb-3">
+          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">
             {tr("Otomotiv", lang)}
           </p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl leading-[1.05]">
-            <span className="text-[#B83A12]">{tr("Güvenilir", lang)}</span> {tr("Araçlar,", lang)}
+            <span className="text-[var(--brand-orange-dark)]">{tr("Güvenilir", lang)}</span>{" "}
+            {tr("Araçlar,", lang)}
             <br />
             {tr("Her Bütçeye Uygun.", lang)}
           </h1>
         </header>
+        <div className="mb-8">
+          <a
+            href="https://wa.me/905382402246?text=Merhaba,%20otomotiv%20araçları%20hakkında%20bilgi%20almak%20istiyorum."
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-brand-green hover:text-brand-green-light"
+          >
+            <span>{tr("WhatsApp ile Bilgi Al", lang)}</span>
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H8a2 2 0 00-2 2v10.586l3.293-3.293a1 1 0 011.414 0L16 18.586V14a2 2 0 002-2v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h5.586l-3.293 3.293a1 1 0 001.414 1.414L20 15.414V18a2 2 0 00-2 2H6a2 2 0 00-2-2v-2a2 2 0 002-2z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div className="mb-8">
+          <a
+            href="https://wa.me/905382402246?text=Merhaba,%20gayrimenkul%20ilanları%20hakkında%20bilgi%20almak%20istiyorum."
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-brand-green hover:text-brand-green-light"
+          >
+            <span>{tr("WhatsApp ile İletişime Geç", lang)}</span>
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H8a2 2 0 00-2 2v10.586l3.293-3.293a1 1 0 011.414 0L16 18.586V14a2 2 0 002-2v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h5.586l-3.293 3.293a1 1 0 001.414 1.414L20 15.414V18a2 2 0 00-2 2H6a2 2 0 00-2-2v-2a2 2 0 002-2z"
+              />
+            </svg>
+          </a>
+        </div>
         <div className="space-y-8">
           {sorted.map((v) => (
             <ListingCard key={v.id} item={v} />
@@ -151,6 +188,17 @@ export function DisTicaretView() {
               <p className="mt-3 text-sm text-white/0 group-hover:text-white/90 transition-all duration-500 max-w-xs">
                 {tr(t.vision, lang)}
               </p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand-green group-hover:text-brand-green-light">
+                {tr("WhatsApp ile Bilgi Al", lang)}
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H8a2 2 0 00-2 2v10.586l3.293-3.293a1 1 0 011.414 0L16 18.586V14a2 2 0 002-2v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h5.586l-3.293 3.293a1 1 0 001.414 1.414L20 15.414V18a2 2 0 00-2 2H6a2 2 0 00-2-2v-2a2 2 0 002-2z"
+                  />
+                </svg>
+              </span>
             </div>
           </a>
         ))}
@@ -195,6 +243,24 @@ export function TercumeView() {
           Belgenizi yükleyin, yapay zeka teklifi anında.
         </h1>
       </header>
+      <div className="mb-8 text-center">
+        <a
+          href="https://wa.me/905382402246?text=Merhaba,%20tercüme%20hizmeti%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-brand-green hover:text-brand-green-light"
+        >
+          <span>WhatsApp ile ön fiyat al</span>
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 6H8a2 2 0 00-2 2v10.586l3.293-3.293a1 1 0 011.414 0L16 18.586V14a2 2 0 002-2v-2a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h5.586l-3.293 3.293a1 1 0 001.414 1.414L20 15.414V18a2 2 0 00-2 2H6a2 2 0 00-2-2v-2a2 2 0 002-2z"
+            />
+          </svg>
+        </a>
+      </div>
 
       {quote ? (
         <div className="rounded-3xl border border-border bg-card p-10 text-center">

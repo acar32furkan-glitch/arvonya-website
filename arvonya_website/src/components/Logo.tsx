@@ -15,10 +15,10 @@ export function Logo({ className = "", size = "navbar" }: { className?: string; 
     <picture
       className={`inline-block shrink-0 ${logoSizes[size] ?? logoSizes.navbar} ${className}`}
     >
-      <source srcSet="/logo_preview-480.avif 1x, /logo_preview-768.avif 2x" type="image/avif" />
-      <source srcSet="/logo_preview-480.webp 1x, /logo_preview-768.webp 2x" type="image/webp" />
+      <source srcSet="/assets/logo-480.avif 1x, /assets/logo-768.avif 2x" type="image/avif" />
+      <source srcSet="/assets/logo-480.webp 1x, /assets/logo-768.webp 2x" type="image/webp" />
       <img
-        src="/logo_preview.png"
+        src="/assets/logo-480.webp"
         alt="Arvonya Grup"
         className="h-full w-full object-contain"
         width={80}

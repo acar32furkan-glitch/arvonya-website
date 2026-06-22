@@ -61,7 +61,7 @@ export function LeadForm() {
     >
       <div className="rounded-3xl border border-border bg-white p-8 md:p-12 shadow-md">
         <div className="mb-8">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-[#2f4553] mb-2">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--brand-green)] mb-2">
             Arvonya Group
           </p>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#1A1A1A]">
