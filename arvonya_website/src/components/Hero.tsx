@@ -75,15 +75,27 @@ export function Hero() {
             className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
             style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
           >
-            <img
-              src="/assets/hero-estate-o0EkCtrk-1920.webp"
-              alt="Arvonya Emlak"
-              className="h-full w-full object-cover object-center"
-              loading="eager"
-              fetchPriority="high"
-              width={1920}
-              height={832}
-            />
+            <picture>
+              <source
+                type="image/avif"
+                srcSet="/assets/hero-estate-o0EkCtrk-480.avif 480w, /assets/hero-estate-o0EkCtrk-768.avif 768w, /assets/hero-estate-o0EkCtrk-1024.avif 1024w, /assets/hero-estate-o0EkCtrk-1440.avif 1440w, /assets/hero-estate-o0EkCtrk-1920.avif 1920w"
+                sizes="(min-width: 1024px) 48vw, 100vw"
+              />
+              <source
+                type="image/webp"
+                srcSet="/assets/hero-estate-o0EkCtrk-480.webp 480w, /assets/hero-estate-o0EkCtrk-768.webp 768w, /assets/hero-estate-o0EkCtrk-1024.webp 1024w, /assets/hero-estate-o0EkCtrk-1440.webp 1440w, /assets/hero-estate-o0EkCtrk-1920.webp 1920w"
+                sizes="(min-width: 1024px) 48vw, 100vw"
+              />
+              <img
+                src="/assets/hero-estate-o0EkCtrk-1920.webp"
+                alt="Arvonya Emlak"
+                className="h-full w-full object-cover object-center"
+                loading="eager"
+                fetchPriority="high"
+                width={1920}
+                height={832}
+              />
+            </picture>
           <div
             className="absolute inset-0"
             style={{

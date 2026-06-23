@@ -10,7 +10,7 @@ export function IntroAnimation() {
     if (sessionStorage.getItem("arvonya_intro_seen")) return;
     setShow(true);
     sessionStorage.setItem("arvonya_intro_seen", "1");
-    const t = setTimeout(() => setShow(false), 2000);
+    const t = setTimeout(() => setShow(false), 800);
     return () => clearTimeout(t);
   }, []);
 

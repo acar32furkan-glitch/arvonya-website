@@ -41,7 +41,7 @@ export function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between gap-4">
-          <Link to="/" onClick={() => setView("gayrimenkul")}>
+          <Link to="/" onClick={() => setView("gayrimenkul")} className="shrink-0">
             <Logo size="text-lg" />
           </Link>
 
