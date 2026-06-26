@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useStore } from "@/lib/store";
-import { IntroAnimation } from "@/components/IntroAnimation";
 import { Navbar } from "@/components/Navbar";
 import { AmbientBackdrop } from "@/components/AmbientBackdrop";
 import { FilterCapsule } from "@/components/FilterCapsule";
@@ -73,7 +72,6 @@ function Home() {
   const { view } = useStore();
   return (
     <div className="min-h-screen relative">
-      <IntroAnimation />
       <AmbientBackdrop />
       <Navbar />
       <main>
