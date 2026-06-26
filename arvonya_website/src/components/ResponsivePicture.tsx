@@ -16,18 +16,17 @@ type ResponsivePictureProps = Omit<
 
 const WIDTHS = [480, 768, 1024, 1440, 1920] as const;
 
-function variantSrc(src: string, extension: "webp" | "avif", width: number) {
-  const withoutExt = src.replace(/\.[^.]+$/, "");
-  return `${withoutExt}-${width}.${extension}`;
+function hasWidthVariants(src: string): boolean {
+  return /\/assets\/[^/]+-[A-Za-z0-9]{6,10}-\d+\.(webp|avif)$/.test(src);
 }
 
-function buildSrcSet(src: string, extension: "webp" | "avif") {
-  const candidates: string[] = [];
-  for (const w of WIDTHS) {
-    candidates.push(`${variantSrc(src, extension, w)} ${w}w`);
-  }
-  candidates.push(`${src} 1w`);
-  return candidates.join(", ");
+function variantSrc(src: string, ext: "webp" | "avif", width: number) {
+  const base = src.replace(/-\d+\.(webp|avif)$/, "");
+  return `${base}-${width}.${ext}`;
+}
+
+function buildSrcSet(src: string, ext: "webp" | "avif") {
+  return WIDTHS.map((w) => `${variantSrc(src, ext, w)} ${w}w`).join(", ");
 }
 
 export function ResponsivePicture({
@@ -41,7 +40,9 @@ export function ResponsivePicture({
   priority = false,
   ...imgProps
 }: ResponsivePictureProps) {
-  if (!src.startsWith("/assets/") && !src.startsWith("/logo_preview.png")) {
+  const fetchPriority = priority ? "high" : "auto";
+
+  if (!hasWidthVariants(src)) {
     return (
       <img
         {...imgProps}
@@ -52,7 +53,7 @@ export function ResponsivePicture({
         height={height}
         loading={loading}
         decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
+        fetchPriority={fetchPriority}
       />
     );
   }
@@ -70,7 +71,7 @@ export function ResponsivePicture({
         height={height}
         loading={loading}
         decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
+        fetchPriority={fetchPriority}
       />
     </picture>
   );
