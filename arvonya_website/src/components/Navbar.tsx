@@ -33,7 +33,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
+        transition={{ delay: 0, duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           transparent
             ? "bg-transparent border-transparent"
@@ -83,12 +83,12 @@ export function Navbar() {
                 </button>
               );
             })}
-            <a
-              href="/iletisim"
+            <Link
+              to="/iletisim"
               className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
             >
               İletişim
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -214,14 +214,13 @@ export function Navbar() {
                     </button>
                   );
                 })}
-<a
-                   href="/iletisim"
-                   onTouchEnd={() => setMobileOpen(false)}
-                   onClick={() => setMobileOpen(false)}
-                   className="block w-full px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
-                 >
-                   İletişim
-                 </a>
+                <Link
+                  to="/iletisim"
+                  onClick={() => setMobileOpen(false)}
+                  className="block w-full px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
+                >
+                  İletişin
+                </Link>
                 {/* Lang + Currency in mobile */}
                 <div className="pt-3 border-t border-border/40 flex items-center justify-between">
                   <div className="flex gap-1">
