@@ -14,7 +14,7 @@ type ResponsivePictureProps = Omit<
   priority?: boolean;
 };
 
-const WIDTHS = [480, 768, 1024, 1440, 1920] as const;
+const WIDTHS = [240, 480, 768, 1024, 1440, 1920] as const;
 
 function hasWidthVariants(src: string): boolean {
   return /\/assets\/[^/]+-[A-Za-z0-9]{6,10}-\d+\.(webp|avif)$/.test(src);
@@ -25,8 +25,11 @@ function variantSrc(src: string, ext: "webp" | "avif", width: number) {
   return `${base}-${width}.${ext}`;
 }
 
-function buildSrcSet(src: string, ext: "webp" | "avif") {
-  return WIDTHS.map((w) => `${variantSrc(src, ext, w)} ${w}w`).join(", ");
+function buildSrcSet(src: string, ext: "webp" | "avif", maxWidth?: number) {
+  return WIDTHS
+    .filter(w => !maxWidth || w <= maxWidth * 2)
+    .map((w) => `${variantSrc(src, ext, w)} ${w}w`)
+    .join(", ");
 }
 
 export function ResponsivePicture({
@@ -60,8 +63,8 @@ export function ResponsivePicture({
 
   return (
     <picture>
-      <source type="image/avif" srcSet={buildSrcSet(src, "avif")} sizes={sizes} />
-      <source type="image/webp" srcSet={buildSrcSet(src, "webp")} sizes={sizes} />
+      <source type="image/avif" srcSet={buildSrcSet(src, "avif", width)} sizes={sizes} />
+      <source type="image/webp" srcSet={buildSrcSet(src, "webp", width)} sizes={sizes} />
       <img
         {...imgProps}
         src={src}

@@ -121,14 +121,14 @@ export function ListingCard({
                    style={active === i ? { boxShadow: `0 0 22px ${aura}` } : undefined}
                  >
                   {hasImages ? (
-                    <ResponsivePicture
-                      src={src}
-                      alt=""
-                      className={`h-full w-full object-cover transition-transform duration-300 ${active === i ? "scale-105" : "scale-100 hover:scale-105"}`}
-                      sizes="120px"
-                      width={300}
-                      height={300}
-                    />
+<ResponsivePicture
+                       src={src}
+                       alt=""
+                       className={`h-full w-full object-cover transition-transform duration-300 ${active === i ? "scale-105" : "scale-100 hover:scale-105"}`}
+                       sizes="(max-width: 768px) 76px, 120px"
+                       width={120}
+                       height={120}
+                     />
                   ) : (
                     <div className="h-full w-full bg-gradient-to-br from-brand-green-soft to-brand-orange-soft" />
                   )}

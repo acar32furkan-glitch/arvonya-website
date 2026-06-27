@@ -62,17 +62,14 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <div className="relative min-h-screen overflow-hidden bg-[var(--background)]">
+      <div className="relative min-h-screen overflow-hidden bg-[var(--background)] md:bg-transparent">
         <GrainOverlay />
         <DotGrid />
 
         <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
 
-<motion.div
-            initial={{ opacity: 0, x: 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
+<div
+            className="absolute right-0 top-0 hidden md:block h-full w-full lg:w-[48%]"
             style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
           >
             <picture>
@@ -104,7 +101,7 @@ export function Hero() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/30 via-transparent to-transparent" />
-        </motion.div>
+        </div>
 
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
           <motion.p
