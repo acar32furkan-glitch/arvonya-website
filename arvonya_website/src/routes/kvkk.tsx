@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/kvkk")({
@@ -12,7 +11,6 @@ export const Route = createFileRoute("/kvkk")({
 function KvkkPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <Navbar />
       <main className="mx-auto max-w-4xl px-6 pb-16 pt-28">
         <h1 className="text-3xl font-semibold tracking-tight">
           Kişisel Verilerin Korunması (KVKK) Aydınlatma Metni
