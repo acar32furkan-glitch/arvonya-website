@@ -18,7 +18,7 @@ import { ArrowLeft, MessageCircle, CalendarClock, X, Heart } from "lucide-react"
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SITE_URL = "https://arvonya-website.netlify.app";
+const SITE_URL = "https://arvonya-site.vercel.app";
 
 type PropertyRow = {
   id: string;
