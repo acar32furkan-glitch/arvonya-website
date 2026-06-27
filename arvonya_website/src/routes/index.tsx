@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useStore } from "@/lib/store";
 import { AmbientBackdrop } from "@/components/AmbientBackdrop";
 import { FilterCapsule } from "@/components/FilterCapsule";
+import { ChatbotCapsule } from "@/components/ChatbotCapsule";
 import { CookieBanner } from "@/components/CookieBanner";
 import {
   GayrimenkulView,
@@ -81,6 +82,7 @@ function Home() {
         </AnimatePresence>
       </main>
       <FilterCapsule />
+      <ChatbotCapsule />
       <CookieBanner />
     </div>
   );
