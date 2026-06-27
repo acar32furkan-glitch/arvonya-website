@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useStore, type View, type Currency, type Lang } from "@/lib/store";
 import { Logo } from "./Logo";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 import { ChevronDown, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { FavoritesDrawer } from "./FavoritesDrawer";
@@ -16,6 +16,8 @@ const ACCENTS: Record<View, "green" | "orange" | "neutral"> = {
 
 export function Navbar() {
   const { view, setView, currency, setCurrency, lang, setLang, favorites, sectors } = useStore();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,11 +56,14 @@ export function Navbar() {
                   ? "var(--brand-green)"
                   : accent === "orange"
                     ? "var(--brand-orange-dark)"
-                    : "#1A1A1A";
+                    : "var(--foreground)";
               return (
                 <button
                   key={n.id}
-                  onClick={() => setView(n.id)}
+                  onClick={() => {
+                    setView(n.id);
+                    if (pathname !== "/") navigate({ to: "/" });
+                  }}
                   className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${transparent ? "text-[#1A1A1A]/70 hover:bg-black/6" : "hover:bg-secondary"}`}
                   style={{
                     color:
@@ -181,13 +186,14 @@ export function Navbar() {
                       ? "var(--brand-green)"
                       : accent === "orange"
                         ? "var(--brand-orange-dark)"
-                        : "#1A1A1A";
+: "var(--foreground)";
                   return (
                     <button
                       key={n.id}
                       onClick={() => {
                         setView(n.id);
                         setMobileOpen(false);
+                        if (pathname !== "/") navigate({ to: "/" });
                       }}
                       className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
                       style={{
@@ -219,7 +225,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="block w-full px-4 py-3 rounded-xl text-left text-sm font-medium transition-colors hover:bg-secondary"
                 >
-                  İletişin
+                  İletişim
                 </Link>
                 {/* Lang + Currency in mobile */}
                 <div className="pt-3 border-t border-border/40 flex items-center justify-between">

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/iletisim")({
 function IletisimPage() {
   const whatsappHref = `https://wa.me/${COMPANY.phoneIntl}?text=${encodeURIComponent("Merhaba, iletişim formu üzerinden mesaj gönderiyorum.")}`;
   return (
-    <div className="min-h-screen bg-[#F4F0EA] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <main className="mx-auto max-w-7xl px-6 pb-16 pt-28">
         <h1 className="text-3xl font-semibold tracking-tight">İletişim</h1>
 

@@ -30,7 +30,7 @@ export function CookieBanner() {
 
   return (
     <section className="w-full border-t-2 border-brand-orange bg-white">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs text-[#1A1A1A] sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs text-[var(--foreground)] sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>
           Bu site deneyiminizi iyileştirmek için çerez kullanmaktadır. KVKK kapsamında bilgi için
           Gizlilik Politikamızı inceleyebilirsiniz.
@@ -46,7 +46,7 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => handleConsent("rejected")}
-            className="rounded-full border border-[#D9D9D9] px-3 py-1.5 text-xs font-medium text-[#4A4A4A] transition-colors hover:bg-[#F3F3F3]"
+            className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)] transition-colors hover:bg-[var(--secondary)]"
           >
             Reddet
           </button>

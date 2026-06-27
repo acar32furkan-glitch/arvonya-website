@@ -6,7 +6,7 @@ const items = [
     n: "01",
     title: "Çok Sektörlü Güç",
     desc: "Emlak, otomotiv, dış ticaret ve tercüme alanlarında entegre uzmanlık.",
-    color: "#30d068",
+    color: "var(--brand-green)",
   },
   {
     n: "02",
@@ -18,7 +18,7 @@ const items = [
     n: "03",
     title: "Küresel Standartlar",
     desc: "Uluslararası iş kalitesini Türk iş dünyasına entegre ediyoruz.",
-    color: "#1A1A1A",
+    color: "var(--foreground)",
   },
 ];
 

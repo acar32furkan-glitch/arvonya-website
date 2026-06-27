@@ -30,7 +30,7 @@ function DotGrid() {
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
       <defs>
         <pattern id="dot-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-          <circle cx="1.5" cy="1.5" r="1.2" fill="#1A1A1A" opacity="0.055" />
+          <circle cx="1.5" cy="1.5" r="1.2" fill="var(--foreground)" opacity="0.055" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#dot-grid)" />
@@ -62,7 +62,7 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <div className="relative min-h-screen overflow-hidden bg-[#F4F0EA]">
+      <div className="relative min-h-screen overflow-hidden bg-[var(--background)]">
         <GrainOverlay />
         <DotGrid />
 
@@ -103,7 +103,7 @@ export function Hero() {
                 "linear-gradient(to right, rgba(244,240,234,0.55) 0%, rgba(244,240,234,0.12) 22%, transparent 42%)",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F4F0EA]/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/30 via-transparent to-transparent" />
         </motion.div>
 
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
@@ -116,7 +116,7 @@ export function Hero() {
             Gayrimenkul · Otomotiv · Güven
           </motion.p>
 
-<h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]" id="hero-heading">
+<h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]" id="hero-heading">
              <span className="block">
                <Word text="Isparta'nın" delay={0.65} />
              </span>
@@ -167,7 +167,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div id="sector-band" className="bg-[#F4F0EA] px-6 pb-16">
+      <div id="sector-band" className="bg-[var(--background)] px-6 pb-16">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 h-px bg-neutral-200" />
           <p className="mb-8 text-center text-[10px] uppercase tracking-[0.45em] text-neutral-400">

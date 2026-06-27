@@ -34,7 +34,7 @@ function Admin() {
   const tryLogin = () => (pw === adminPw ? setAuthed(true) : alert("Hatalı parola"));
   if (!authed) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-[#2f4553]/10 via-white to-[#B83A12]/10">
+      <div className="min-h-screen flex items-center justify-center p-6" style={{ background: "linear-gradient(to bottom right, rgba(47,69,83,0.1) 0%, white 50%, rgba(184,58,18,0.1) 100%)" }}>
         <div className="w-full max-w-sm bg-white rounded-3xl border border-border p-8 shadow-xl">
           <Logo size="text-2xl" />
           <h1 className="mt-6 text-xl font-semibold">Yönetim Paneli</h1>
@@ -208,7 +208,7 @@ function Stats({ counts }: { counts: Record<string, number> }) {
       bg: "#2f455315",
       icon: Home,
     },
-    { label: "Araç İlanları", val: counts.vehicles, color: "#B83A12", bg: "#B83A1215", icon: Car },
+    { label: "Araç İlanları", val: counts.vehicles, color: "var(--brand-orange-dark)", bg: "var(--brand-orange-soft)", icon: Car },
     {
       label: "Tercüme Talepleri",
       val: counts.translations,
@@ -219,8 +219,8 @@ function Stats({ counts }: { counts: Record<string, number> }) {
     {
       label: "Randevular",
       val: counts.appointments,
-      color: "#B83A12",
-      bg: "#B83A1215",
+      color: "var(--brand-orange-dark)",
+      bg: "var(--brand-orange-soft)",
       icon: CalendarCheck,
     },
   ];
@@ -300,7 +300,7 @@ function ListingsManager({ kind }: { kind: "property" | "vehicle" }) {
               <tr key={l.id}>
                 <td className="px-5 py-4 font-medium text-[#1A1A1A]">{l.title}</td>
                 <td className="px-5 py-4 text-muted-foreground">{l.code}</td>
-                <td className="px-5 py-4 font-semibold text-[#B83A12] whitespace-nowrap">
+                <td className="px-5 py-4 font-semibold text-[var(--brand-orange-dark)] whitespace-nowrap">
                   {l.priceTL.toLocaleString("tr-TR")} TL
                 </td>
                 <td className="px-5 py-4">
@@ -346,14 +346,14 @@ function ListingsManager({ kind }: { kind: "property" | "vehicle" }) {
                 <p className="font-semibold text-[#1A1A1A] leading-tight">{l.title}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{l.code}</p>
               </div>
-              <span className="shrink-0 font-bold text-[#B83A12] text-sm whitespace-nowrap">
+              <span className="shrink-0 font-bold text-[var(--brand-orange-dark)] text-sm whitespace-nowrap">
                 {l.priceTL.toLocaleString("tr-TR")} TL
               </span>
             </div>
             <div className="flex gap-2 mt-3">
               <button
                 onClick={() => setEditing(l)}
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 border-[#B83A12] text-[#B83A12] text-xs font-semibold hover:bg-[#B83A12]/5 transition"
+                className="px-5 py-2.5 rounded-full border-2 border-[var(--brand-orange-dark)] text-[var(--brand-orange-dark)] text-xs font-semibold hover:bg-[var(--brand-orange-soft)] transition"
               >
                 <Pencil className="h-3 w-3" /> Düzenle
               </button>
@@ -418,7 +418,7 @@ function ConfirmDelete({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl"
       >
-        <h3 className="text-lg font-bold text-[#B83A12] mb-2">İlanı Sil</h3>
+        <h3 className="text-lg font-bold text-[var(--brand-orange-dark)] mb-2">İlanı Sil</h3>
         <p className="text-sm text-[#1A1A1A] leading-relaxed mb-1">
           Bu ilanı sistemden tamamen kaldırmak istediğinize emin misiniz? Bu işlem geri alınamaz.
         </p>
@@ -898,7 +898,7 @@ function SectorsManage() {
               </span>
               <button
                 onClick={() => setEditing(s)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[#B83A12] text-[#B83A12] text-xs font-semibold hover:bg-[#B83A12]/5 transition"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-[var(--brand-orange-dark)] text-[var(--brand-orange-dark)] text-xs font-semibold hover:bg-[var(--brand-orange-soft)] transition"
               >
                 <Pencil className="h-3 w-3" /> Düzenle
               </button>

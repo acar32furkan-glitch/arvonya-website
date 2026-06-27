@@ -11,7 +11,7 @@ export const Route = createFileRoute("/kvkk")({
 
 function KvkkPage() {
   return (
-    <div className="min-h-screen bg-[#F4F0EA] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navbar />
       <main className="mx-auto max-w-4xl px-6 pb-16 pt-28">
         <h1 className="text-3xl font-semibold tracking-tight">

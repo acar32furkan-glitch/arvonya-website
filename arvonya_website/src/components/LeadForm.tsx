@@ -64,7 +64,7 @@ export function LeadForm() {
           <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--brand-green)] mb-2">
             Arvonya Group
           </p>
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#1A1A1A]">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[var(--foreground)]">
             Size en uygun teklif için bilgilerinizi bırakın
           </h2>
           <p className="text-sm text-muted-foreground mt-2">
@@ -124,7 +124,7 @@ function FloatingInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder=" "
-        className="peer w-full h-12 px-1 pt-4 pb-1 bg-transparent border-b-2 border-border focus:border-[#1A1A1A] outline-none transition-colors text-sm"
+        className="peer w-full h-12 px-1 pt-4 pb-1 bg-transparent border-b-2 border-border focus:border-[var(--foreground)] outline-none transition-colors text-sm"
       />
       <span className="absolute left-1 top-3.5 text-sm text-muted-foreground transition-all peer-focus:top-0 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest">
         {label}
@@ -155,7 +155,7 @@ function FloatingSelect({
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full h-9 bg-transparent border-b-2 border-border focus:border-[#1A1A1A] outline-none text-sm appearance-none cursor-pointer"
+        className="w-full h-9 bg-transparent border-b-2 border-border focus:border-[var(--foreground)] outline-none text-sm appearance-none cursor-pointer"
       >
         <option value="">Seçiniz</option>
         {options.map((o) => (

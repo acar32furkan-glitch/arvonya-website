@@ -11,7 +11,7 @@ export function Footer() {
 
   return (
     <>
-      <footer className="bg-[#111111] text-neutral-300">
+      <footer className="bg-[var(--foreground)] text-neutral-300">
         <div className="mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-3 gap-10">
           <div>
             <Logo size="text-xl" />
