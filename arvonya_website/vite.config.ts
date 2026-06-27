@@ -38,6 +38,10 @@ export default defineConfig({
             id.includes("input-otp")
           )
             return "form-vendor";
+          if (id.includes("supabase")) return "supabase";
+          if (id.includes("sonner")) return "sonner";
+          if (id.includes("tailwind-merge") || id.includes("clsx") || id.includes("tw-animate"))
+            return "utils";
           return "vendor";
         },
       },

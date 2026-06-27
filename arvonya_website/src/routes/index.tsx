@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useStore } from "@/lib/store";
-import { AmbientBackdrop } from "@/components/AmbientBackdrop";
 import { FilterCapsule } from "@/components/FilterCapsule";
 import { ChatbotCapsule } from "@/components/ChatbotCapsule";
 import { CookieBanner } from "@/components/CookieBanner";
@@ -80,7 +79,6 @@ function Home() {
           {view === "tercume" && <TercumeView key="t" />}
         </AnimatePresence>
       </main>
-      <AmbientBackdrop />
       <FilterCapsule />
       <ChatbotCapsule />
       <CookieBanner />

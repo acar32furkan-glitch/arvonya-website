@@ -62,7 +62,7 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <div className="relative min-h-screen overflow-hidden bg-[var(--background)] md:bg-transparent">
+      <div className="relative min-h-screen overflow-hidden bg-[var(--background)]">
         <GrainOverlay />
         <DotGrid />
 
