@@ -69,7 +69,7 @@ export function Hero() {
         <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
 
 <div
-            className="absolute right-0 top-0 hidden md:block h-full w-full lg:w-[48%]"
+            className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
             style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
           >
             <picture>
@@ -104,14 +104,12 @@ export function Hero() {
         </div>
 
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
+<p
+            style={{ opacity: 1 }}
             className="mb-7 text-[10px] uppercase tracking-[0.5em] text-neutral-400"
           >
             Gayrimenkul · Otomotiv · Güven
-          </motion.p>
+          </p>
 
 <h1 className="text-4xl font-light leading-[1.12] tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-[4.25rem] xl:text-[5rem]" id="hero-heading">
              <span className="block">
@@ -123,16 +121,14 @@ export function Hero() {
              <span className="block">
                <Word text="Emlak" delay={0.9} /> <Word text="Adresi." delay={0.98} />
              </span>
-           </h1>
+</h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.15, duration: 0.7 }}
+          <p
+            style={{ opacity: 1 }}
             className="mt-6 max-w-[22rem] text-sm leading-relaxed text-neutral-500"
           >
             Satılık ve kiralık konut, arsa ve ticari portföy — tek çatı altında.
-          </motion.p>
+          </p>
 
           <motion.button
             initial={{ opacity: 0, y: 12 }}

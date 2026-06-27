@@ -71,7 +71,6 @@ function Home() {
   const { view } = useStore();
   return (
     <div className="min-h-screen relative">
-      <AmbientBackdrop />
       <main>
         <AnimatePresence mode="wait">
           {view === "kurumsal" && <KurumsalView key="k" />}
@@ -81,6 +80,7 @@ function Home() {
           {view === "tercume" && <TercumeView key="t" />}
         </AnimatePresence>
       </main>
+      <AmbientBackdrop />
       <FilterCapsule />
       <ChatbotCapsule />
       <CookieBanner />
