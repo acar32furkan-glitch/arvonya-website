@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as KvkkRouteImport } from './routes/kvkk'
 import { Route as IletisimRouteImport } from './routes/iletisim'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
 
 const KvkkRoute = KvkkRouteImport.update({
@@ -30,11 +29,6 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ListingIdRoute = ListingIdRouteImport.update({
   id: '/listing/$id',
   path: '/listing/$id',
@@ -42,14 +36,12 @@ const ListingIdRoute = ListingIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/iletisim': typeof IletisimRoute
   '/kvkk': typeof KvkkRoute
   '/listing/$id': typeof ListingIdRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/iletisim': typeof IletisimRoute
   '/kvkk': typeof KvkkRoute
@@ -57,7 +49,6 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/iletisim': typeof IletisimRoute
   '/kvkk': typeof KvkkRoute
@@ -65,14 +56,13 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
+  fullPaths: '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
-  id: '__root__' | '/' | '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
+  to: '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
+  id: '__root__' | '/admin' | '/iletisim' | '/kvkk' | '/listing/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   IletisimRoute: typeof IletisimRoute
   KvkkRoute: typeof KvkkRoute
@@ -102,13 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/listing/$id': {
       id: '/listing/$id'
       path: '/listing/$id'
@@ -120,7 +103,6 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   IletisimRoute: IletisimRoute,
   KvkkRoute: KvkkRoute,
