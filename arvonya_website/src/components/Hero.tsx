@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useStore, tr, type ListingType, type View } from "@/lib/store";
 import { ResponsivePicture } from "@/components/ResponsivePicture";
@@ -54,6 +54,11 @@ function Word({ text, delay, color }: { text: string; delay: number; color?: str
 
 export function Hero() {
   const { lang, listingTypeFilter, setListingTypeFilter } = useStore();
+
+  useEffect(() => {
+    const el = document.getElementById("hero-placeholder");
+    if (el) el.remove();
+  }, []);
 
   const tabs: { id: ListingType; label: string }[] = [
     { id: "sale", label: tr("Satılık", lang) },
