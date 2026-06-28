@@ -76,19 +76,14 @@ export function Hero() {
 <div
             className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
             style={{
-              background: "linear-gradient(135deg, #30d068 0%, #137a3a 40%, #2f4553 100%)",
+              backgroundImage: "url(/assets/property-1-CBDHeObv-768.webp)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
               clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)",
             }}
           >
-            <div className="absolute inset-0 opacity-20" style={{
-              background: "radial-gradient(circle at 30% 40%, rgba(255,104,8,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(48,208,104,0.3) 0%, transparent 50%)"
-            }} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center text-white/90 p-8">
-                <div className="text-5xl md:text-7xl font-black tracking-tight opacity-90">ARVONYA</div>
-                <div className="text-lg md:text-xl font-light mt-2 opacity-70">Kurumsal Güven, Kalıcı İstikrar</div>
-              </div>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)]/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
 
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
