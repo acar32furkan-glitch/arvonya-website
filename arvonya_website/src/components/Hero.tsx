@@ -74,7 +74,7 @@ export function Hero() {
         <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
 
 <div
-            className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
+            className="absolute right-0 top-0 hidden md:block h-full w-full lg:w-[48%]"
             style={{
               backgroundImage: "url(/assets/property-1-CBDHeObv-768.webp)",
               backgroundSize: "cover",
