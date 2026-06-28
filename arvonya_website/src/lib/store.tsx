@@ -362,7 +362,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [roomsFilter, setRoomsFilter] = useState("");
   const [vehicleTypeFilter, setVehicleTypeFilter] = useState("");
   const [sectors, setSectors] = useState<Sector[]>(defaultSectors);
-
   useEffect(() => {
     let cancelled = false;
 
@@ -407,7 +406,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    void loadFromSupabase();
+    const timer = setTimeout(() => {
+      void loadFromSupabase();
+    }, 100);
 
     setTranslationRequests(loadLS("arvonya_translations", []));
     setLeads(loadLS("arvonya_leads", []));
@@ -416,6 +417,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
     return () => {
       cancelled = true;
+      clearTimeout(timer);
     };
   }, []);
 

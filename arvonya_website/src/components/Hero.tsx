@@ -75,38 +75,21 @@ export function Hero() {
 
 <div
             className="absolute right-0 top-0 h-full w-full lg:w-[48%]"
-            style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-          >
-            <picture>
-              <source
-                type="image/avif"
-                srcSet="/assets/hero-estate-o0EkCtrk-480.avif 480w, /assets/hero-estate-o0EkCtrk-768.avif 768w, /assets/hero-estate-o0EkCtrk-1024.avif 1024w, /assets/hero-estate-o0EkCtrk-1440.avif 1440w, /assets/hero-estate-o0EkCtrk-1920.avif 1920w"
-                sizes="(min-width: 1024px) 48vw, 100vw"
-              />
-              <source
-                type="image/webp"
-                srcSet="/assets/hero-estate-o0EkCtrk-480.webp 480w, /assets/hero-estate-o0EkCtrk-768.webp 768w, /assets/hero-estate-o0EkCtrk-1024.webp 1024w, /assets/hero-estate-o0EkCtrk-1440.webp 1440w, /assets/hero-estate-o0EkCtrk-1920.webp 1920w"
-                sizes="(min-width: 1024px) 48vw, 100vw"
-              />
-              <img
-                src="/assets/hero-estate-o0EkCtrk-1920.webp"
-                alt="Arvonya Emlak"
-                className="h-full w-full object-cover object-center"
-                loading="eager"
-                fetchPriority="high"
-                width={1920}
-                height={832}
-              />
-            </picture>
-          <div
-            className="absolute inset-0"
             style={{
-              background:
-                "linear-gradient(to right, rgba(244,240,234,0.55) 0%, rgba(244,240,234,0.12) 22%, transparent 42%)",
+              background: "linear-gradient(135deg, #30d068 0%, #137a3a 40%, #2f4553 100%)",
+              clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)",
             }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/30 via-transparent to-transparent" />
-        </div>
+          >
+            <div className="absolute inset-0 opacity-20" style={{
+              background: "radial-gradient(circle at 30% 40%, rgba(255,104,8,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(48,208,104,0.3) 0%, transparent 50%)"
+            }} />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-white/90 p-8">
+                <div className="text-5xl md:text-7xl font-black tracking-tight opacity-90">ARVONYA</div>
+                <div className="text-lg md:text-xl font-light mt-2 opacity-70">Kurumsal Güven, Kalıcı İstikrar</div>
+              </div>
+            </div>
+          </div>
 
         <div className="relative z-10 flex min-h-screen flex-col justify-center px-8 pt-24 pb-20 lg:w-[55%] lg:px-16 xl:px-24">
 <p
