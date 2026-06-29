@@ -1,6 +1,6 @@
 # ARVONYA SITE — PERFORMANS RAPORU & DÜZELTME PLANI
-**Tarih:** 29 Haziran 2026  
-**Rapor:** Lighthouse 13.3.0 (Mobil, Moto G Power simülasyonu)  
+**Tarih:** 29 Haziran 2026
+**Rapor:** Lighthouse 13.3.0 (Mobil, Moto G Power simülasyonu)
 **URL:** https://arvonya-site.vercel.app/
 
 ---
@@ -32,7 +32,7 @@
 - Mobilde hero gizle (`hidden md:block`)
 
 ### 2. TBT 742ms — Main Thread Blokajı
-**Neden:** 
+**Neden:**
 - `vendor-Cg8SQHqi.js` 340kB tek dosya
 - Supabase client ilk yüklemede yükleniyor
 - framer-motion animasyonlar main thread'ı blokluyor
@@ -51,7 +51,7 @@
 
 ### 4. FCP 2.2s — İlk İçerik Gösterimi
 **Neden:** Hero görseli yüklenene kadar içerik gösterilmiyor
-**Düzeltme:** 
+**Düzeltme:**
 - Inline critical CSS (hero placeholder)
 - Hero görselini lazy load et (eager yerine)
 
