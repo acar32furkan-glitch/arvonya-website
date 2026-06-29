@@ -16,10 +16,10 @@ import {
   ScrollText,
   Trees,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { ResponsivePicture } from "@/components/ResponsivePicture";
 
-export function ListingCard({
+export const ListingCard = memo(function ListingCard({
   item,
   showWhatsAppShare = false,
 }: {
@@ -257,7 +257,7 @@ export function ListingCard({
       )}
     </motion.div>
   );
-}
+});
 
 function FallbackImage() {
   return (

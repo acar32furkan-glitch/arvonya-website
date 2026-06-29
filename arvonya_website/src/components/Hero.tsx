@@ -67,7 +67,6 @@ export function Hero() {
         <DotGrid />
 
         <div className="pointer-events-none absolute left-[6%] top-[30%] h-[30rem] w-[30rem] rounded-full bg-[var(--brand-green)]/10 blur-[120px]" />
-
         <motion.div
           initial={{ opacity: 0, x: 80 }}
           animate={{ opacity: 1, x: 0 }}
@@ -76,15 +75,12 @@ export function Hero() {
           style={{ clipPath: "polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
         >
           <ResponsivePicture
-            src="/assets/hero-estate-o0EkCtrk.webp"
+            src="/assets/hero-estate-o0EkCtrk-1440.avif"
             alt="Arvonya Emlak"
             className="h-full w-full object-cover object-center"
-            sizes="(min-width: 1024px) 48vw, 100vw"
-            width={1920}
-            height={832}
-            priority
-            loading="eager"
-            fetchPriority="high"
+            sizes="(min-width: 1024px) 48vw"
+            width={1440}
+            height={624}
           />
           <div
             className="absolute inset-0"

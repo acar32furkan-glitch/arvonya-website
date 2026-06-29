@@ -366,56 +366,61 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
 
-    async function loadFromSupabase() {
-      setIsLoading(true);
-      try {
-        const [propertiesRes, vehiclesRes, appointmentsRes] = await Promise.all([
-          supabase
-            .from("properties")
-            .select("*")
-            .eq("is_active", true)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("vehicles")
-            .select("*")
-            .eq("is_active", true)
-            .order("created_at", { ascending: false }),
-          supabase.from("appointments").select("*").order("created_at", { ascending: false }),
-        ]);
-
-        if (cancelled) return;
-
-        if (propertiesRes.error) console.error("load properties:", propertiesRes.error);
-        if (vehiclesRes.error) console.error("load vehicles:", vehiclesRes.error);
-        if (appointmentsRes.error) console.error("load appointments:", appointmentsRes.error);
-
-        const loadedProperties = propertiesRes.data?.length
-          ? (propertiesRes.data as PropertyRow[]).map(propertyFromRow)
-          : seedProperties;
-        const loadedVehicles = vehiclesRes.data?.length
-          ? (vehiclesRes.data as VehicleRow[]).map(vehicleFromRow)
-          : seedVehicles;
-
-        setProperties(loadedProperties);
-        setVehicles(loadedVehicles);
-
-        if (appointmentsRes.data) {
-          setAppointments((appointmentsRes.data as AppointmentRow[]).map(appointmentFromRow));
-        }
-      } finally {
-        if (!cancelled) setIsLoading(false);
-      }
-    }
-
-    void loadFromSupabase();
-
     setTranslationRequests(loadLS("arvonya_translations", []));
     setLeads(loadLS("arvonya_leads", []));
     setFavorites(loadLS("arvonya_favorites", []));
     setSectors(loadLS("arvonya_sectors", defaultSectors));
 
+    const timer = setTimeout(() => {
+      if (cancelled) return;
+
+      async function loadFromSupabase() {
+        setIsLoading(true);
+        try {
+          const [propertiesRes, vehiclesRes, appointmentsRes] = await Promise.all([
+            supabase
+              .from("properties")
+              .select("*")
+              .eq("is_active", true)
+              .order("created_at", { ascending: false }),
+            supabase
+              .from("vehicles")
+              .select("*")
+              .eq("is_active", true)
+              .order("created_at", { ascending: false }),
+            supabase.from("appointments").select("*").order("created_at", { ascending: false }),
+          ]);
+
+          if (cancelled) return;
+
+          if (propertiesRes.error) console.error("load properties:", propertiesRes.error);
+          if (vehiclesRes.error) console.error("load vehicles:", vehiclesRes.error);
+          if (appointmentsRes.error) console.error("load appointments:", appointmentsRes.error);
+
+          const loadedProperties = propertiesRes.data?.length
+            ? (propertiesRes.data as PropertyRow[]).map(propertyFromRow)
+            : seedProperties;
+          const loadedVehicles = vehiclesRes.data?.length
+            ? (vehiclesRes.data as VehicleRow[]).map(vehicleFromRow)
+            : seedVehicles;
+
+          setProperties(loadedProperties);
+          setVehicles(loadedVehicles);
+
+          if (appointmentsRes.data) {
+            setAppointments((appointmentsRes.data as AppointmentRow[]).map(appointmentFromRow));
+          }
+        } finally {
+          if (!cancelled) setIsLoading(false);
+        }
+      }
+
+      void loadFromSupabase();
+    }, 200);
+
     return () => {
       cancelled = true;
+      clearTimeout(timer);
     };
   }, []);
 
