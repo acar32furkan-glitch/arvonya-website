@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: kurulum + derleme
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: arvonya_website
+
+    steps:
+      - uses: actions/checkout@v5
+
+      # Bun sürümü yerelde doğrulandı (bun 1.4.2 ile `bun install` + `bun run build` geçiyor).
+      # Lint adımı bilinçli olarak CI'da YOK: eski kod tabanındaki mevcut eslint uyarıları
+      # yeşile çekilmeden CI'ya konursa kapı sürekli kırmızı kalır.
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - name: Bağımlılıkları kur
+        run: bun install
+
+      - name: Üretim derlemesi
+        run: bun run build
