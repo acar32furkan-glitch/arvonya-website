@@ -41,3 +41,12 @@ dist-ssr
 
 # Optimized images metadata (internal tooling output)
 /public/optimized
+
+# Geliştirme sırasında üretilen geçici çıktılar (raporlardaki ekran görüntüleri hariç)
+*-check.json
+pagespeed-response-*.json
+asset-compare.json
+nav-buttons.json
+*-closeup.png
+*-recheck.png
+*-screenshot.png
